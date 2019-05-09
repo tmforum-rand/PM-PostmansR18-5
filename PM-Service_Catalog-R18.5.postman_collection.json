@@ -1,0 +1,2458 @@
+{
+	"info": {
+		"_postman_id": "2330e107-ad55-480c-ac8b-370547b336d0",
+		"name": "PM-Service_Catalog-R18.5",
+		"description": "## TMF API Reference: TMF633 - Service Catalog Management\n\n### Release : 18.5 - December 2018\n\nService Catalog API is one of Catalog Management API Family. Service Catalog API goal is to provide a catalog of services. \n\n### Resource \n- serviceCatalog\n\n### Operations\nService Catalog API performs the following operations on the resource :\n- Retrieve an entity or a collection of entities depending on filter criteria\n- Partial update of an entity (including updating rules)\n- Create an entity (including default values and creation rules)\n- Delete an entity (for administration purposes)\n- Manage notification of events",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "serviceCatalog",
+			"item": [
+				{
+					"name": "List or find ServiceCatalog objects",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "98f70a50-2913-4305-828e-6c299e10d11b",
+								"exec": [
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Service_Catalog}}/tmf-api/serviceCatalogManagement/v4/serviceCatalog?",
+							"host": [
+								"{{Service_Catalog}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceCatalogManagement",
+								"v4",
+								"serviceCatalog"
+							],
+							"query": [
+								{
+									"key": "fields",
+									"value": "{{fields}}",
+									"disabled": true
+								},
+								{
+									"key": "offset",
+									"value": "{{offset}}",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "{{limit}}",
+									"disabled": true
+								}
+							]
+						},
+						"description": "This operation list or find ServiceCatalog entities"
+					},
+					"response": []
+				},
+				{
+					"name": "Creates a ServiceCatalog",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "99c56695-593e-4110-88a0-21d087812329",
+								"exec": [
+									"var json = pm.response.json();",
+									"pm.environment.set(\"id\", json.id);",
+									"",
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Catalog Wholesale Business\"\n}"
+						},
+						"url": {
+							"raw": "{{Service_Catalog}}/tmf-api/serviceCatalogManagement/v4/serviceCatalog",
+							"host": [
+								"{{Service_Catalog}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceCatalogManagement",
+								"v4",
+								"serviceCatalog"
+							]
+						},
+						"description": "This operation creates a ServiceCatalog entity."
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieves a ServiceCatalog by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "bdddc860-1e6e-4242-949b-096751789b57",
+								"exec": [
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Service_Catalog}}/tmf-api/serviceCatalogManagement/v4/serviceCatalog/{{id}}?",
+							"host": [
+								"{{Service_Catalog}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceCatalogManagement",
+								"v4",
+								"serviceCatalog",
+								"{{id}}"
+							],
+							"query": [
+								{
+									"key": "fields",
+									"value": "{{fields}}",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						},
+						"description": "This operation retrieves a ServiceCatalog entity. Attribute selection is enabled for all first level attributes."
+					},
+					"response": []
+				},
+				{
+					"name": "Updates partially a ServiceCatalog",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4fa859e5-04e8-47cf-b023-990ef3e79981",
+								"exec": [
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"version\": \"2.0\",\n    \"validFor\": {\n        \"startDateTime\": \"2018-03-25T00:00:00.000Z\",\n        \"endDateTime\": \"2018-09-25T00:00:00.000Z\"\n    }\n}"
+						},
+						"url": {
+							"raw": "{{Service_Catalog}}/tmf-api/serviceCatalogManagement/v4/serviceCatalog/{{id}}",
+							"host": [
+								"{{Service_Catalog}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceCatalogManagement",
+								"v4",
+								"serviceCatalog",
+								"{{id}}"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						},
+						"description": "This operation updates partially a ServiceCatalog entity."
+					},
+					"response": []
+				},
+				{
+					"name": "Deletes a ServiceCatalog",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2f5d3f36-7247-4848-b045-c57487edca02",
+								"exec": [
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Service_Catalog}}/tmf-api/serviceCatalogManagement/v4/serviceCatalog/{{id}}",
+							"host": [
+								"{{Service_Catalog}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceCatalogManagement",
+								"v4",
+								"serviceCatalog",
+								"{{id}}"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						},
+						"description": "This operation deletes a ServiceCatalog entity."
+					},
+					"response": []
+				}
+			],
+			"description": "Folder for serviceCatalog"
+		},
+		{
+			"name": "serviceCategory",
+			"item": [
+				{
+					"name": "List or find ServiceCategory objects",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1bb50938-2092-4e3a-a01c-2d61b9fcc000",
+								"exec": [
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Service_Catalog}}/tmf-api/serviceCatalogManagement/v4/serviceCategory?",
+							"host": [
+								"{{Service_Catalog}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceCatalogManagement",
+								"v4",
+								"serviceCategory"
+							],
+							"query": [
+								{
+									"key": "fields",
+									"value": "{{fields}}",
+									"disabled": true
+								},
+								{
+									"key": "offset",
+									"value": "{{offset}}",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "{{limit}}",
+									"disabled": true
+								}
+							]
+						},
+						"description": "This operation list or find ServiceCategory entities"
+					},
+					"response": []
+				},
+				{
+					"name": "Creates a ServiceCategory",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c3e6a05d-81f2-49ed-b0d0-23b83bd270ca",
+								"exec": [
+									"var json = pm.response.json();",
+									"pm.environment.set(\"id\", json.id);",
+									"",
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Cloud Services\", \n    \"description\": \"A category to hold all available cloud service offers\", \n    \"isRoot\": true \n}"
+						},
+						"url": {
+							"raw": "{{Service_Catalog}}/tmf-api/serviceCatalogManagement/v4/serviceCategory",
+							"host": [
+								"{{Service_Catalog}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceCatalogManagement",
+								"v4",
+								"serviceCategory"
+							]
+						},
+						"description": "This operation creates a ServiceCategory entity."
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieves a ServiceCategory by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "16a8b1fb-0829-488b-a87b-2478e4666122",
+								"exec": [
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Service_Catalog}}/tmf-api/serviceCatalogManagement/v4/serviceCategory/{{id}}?",
+							"host": [
+								"{{Service_Catalog}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceCatalogManagement",
+								"v4",
+								"serviceCategory",
+								"{{id}}"
+							],
+							"query": [
+								{
+									"key": "fields",
+									"value": "{{fields}}",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						},
+						"description": "This operation retrieves a ServiceCategory entity. Attribute selection is enabled for all first level attributes."
+					},
+					"response": []
+				},
+				{
+					"name": "Updates partially a ServiceCategory",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7ee1a904-4c47-43c3-ab28-00fa0003e0df",
+								"exec": [
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"version\": \"2.0\"\n}"
+						},
+						"url": {
+							"raw": "{{Service_Catalog}}/tmf-api/serviceCatalogManagement/v4/serviceCategory/{{id}}",
+							"host": [
+								"{{Service_Catalog}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceCatalogManagement",
+								"v4",
+								"serviceCategory",
+								"{{id}}"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						},
+						"description": "This operation updates partially a ServiceCategory entity."
+					},
+					"response": []
+				},
+				{
+					"name": "Deletes a ServiceCategory",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1de888fa-8354-43bc-808b-b9ab23f736a2",
+								"exec": [
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Service_Catalog}}/tmf-api/serviceCatalogManagement/v4/serviceCategory/{{id}}",
+							"host": [
+								"{{Service_Catalog}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceCatalogManagement",
+								"v4",
+								"serviceCategory",
+								"{{id}}"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						},
+						"description": "This operation deletes a ServiceCategory entity."
+					},
+					"response": []
+				}
+			],
+			"description": "Folder for serviceCategory"
+		},
+		{
+			"name": "serviceCandidate",
+			"item": [
+				{
+					"name": "List or find ServiceCandidate objects",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ebb6f33d-72fa-4292-af9c-5b6a66e2fe19",
+								"exec": [
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Service_Catalog}}/tmf-api/serviceCatalogManagement/v4/serviceCandidate?",
+							"host": [
+								"{{Service_Catalog}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceCatalogManagement",
+								"v4",
+								"serviceCandidate"
+							],
+							"query": [
+								{
+									"key": "fields",
+									"value": "{{fields}}",
+									"disabled": true
+								},
+								{
+									"key": "offset",
+									"value": "{{offset}}",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "{{limit}}",
+									"disabled": true
+								}
+							]
+						},
+						"description": "This operation list or find ServiceCandidate entities"
+					},
+					"response": []
+				},
+				{
+					"name": "Creates a ServiceCandidate",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "167a5577-2b21-47c9-b379-240f0d90bf14",
+								"exec": [
+									"var json = pm.response.json();",
+									"pm.environment.set(\"id\", json.id);",
+									"",
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"TVServiceCandidate\", \n    \"description\": \"This service candidate allows provision of TV service\", \n    \"version\": \"2.1\", \n    \"validFor\": {\n        \"startDateTime\": \"2017-08-23T00:00:00Z\", \n        \"endDateTime\": \"2018-03-25T00:00:00Z\"\n    }, \n    \"category\": [\n        {\n            \"id\": \"5980\", \n            \"href\": \"https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v4/serviceCategory/5980\",\n            \"name\": \"TV\"\n        }\n    ], \n    \"serviceSpecification\": {\n        \"id\": \"9600\", \n        \"href\": \"https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v4/serviceSpecification/9600\", \n        \"version\": \"2.1\", \n        \"name\": \"CFSS_TV\", \n        \"@type\": \"CustomerFacingServiceSpecification\"\n    }, \n    \"@type\": \"ServiceCandidate\", \n    \"@schemaLocation\": \"https://mycsp.com:8080/tmf-api/schema/Service/ServiceCandidate.schema.json\", \n    \"@baseType\": \"\"\n}"
+						},
+						"url": {
+							"raw": "{{Service_Catalog}}/tmf-api/serviceCatalogManagement/v4/serviceCandidate",
+							"host": [
+								"{{Service_Catalog}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceCatalogManagement",
+								"v4",
+								"serviceCandidate"
+							]
+						},
+						"description": "This operation creates a ServiceCandidate entity."
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieves a ServiceCandidate by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a272a16a-8ca7-476d-bddc-88ea2167bbc4",
+								"exec": [
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Service_Catalog}}/tmf-api/serviceCatalogManagement/v4/serviceCandidate/{{id}}?",
+							"host": [
+								"{{Service_Catalog}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceCatalogManagement",
+								"v4",
+								"serviceCandidate",
+								"{{id}}"
+							],
+							"query": [
+								{
+									"key": "fields",
+									"value": "{{fields}}",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						},
+						"description": "This operation retrieves a ServiceCandidate entity. Attribute selection is enabled for all first level attributes."
+					},
+					"response": []
+				},
+				{
+					"name": "Updates partially a ServiceCandidate",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "bbf09a4e-0535-4fe3-8534-d8767298da7b",
+								"exec": [
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"version\": \"3.1\",\n    \"validFor\": {\n        \"startDateTime\": \"2018-03-23T00:00:00Z\",\n        \"endDateTime\": \"2018-09-25T00:00:00Z\"\n    }\n}"
+						},
+						"url": {
+							"raw": "{{Service_Catalog}}/tmf-api/serviceCatalogManagement/v4/serviceCandidate/{{id}}",
+							"host": [
+								"{{Service_Catalog}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceCatalogManagement",
+								"v4",
+								"serviceCandidate",
+								"{{id}}"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						},
+						"description": "This operation updates partially a ServiceCandidate entity."
+					},
+					"response": []
+				},
+				{
+					"name": "Deletes a ServiceCandidate",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "54b9b5a4-c830-4a81-80ac-4fbc5e33ab9d",
+								"exec": [
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Service_Catalog}}/tmf-api/serviceCatalogManagement/v4/serviceCandidate/{{id}}",
+							"host": [
+								"{{Service_Catalog}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceCatalogManagement",
+								"v4",
+								"serviceCandidate",
+								"{{id}}"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						},
+						"description": "This operation deletes a ServiceCandidate entity."
+					},
+					"response": []
+				}
+			],
+			"description": "Folder for serviceCandidate"
+		},
+		{
+			"name": "serviceSpecification",
+			"item": [
+				{
+					"name": "List or find ServiceSpecification objects",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "00fa4efd-0e8a-4d92-8fc5-b33a97b99290",
+								"exec": [
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Service_Catalog}}/tmf-api/serviceCatalogManagement/v4/serviceSpecification?",
+							"host": [
+								"{{Service_Catalog}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceCatalogManagement",
+								"v4",
+								"serviceSpecification"
+							],
+							"query": [
+								{
+									"key": "fields",
+									"value": "{{fields}}",
+									"disabled": true
+								},
+								{
+									"key": "offset",
+									"value": "{{offset}}",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "{{limit}}",
+									"disabled": true
+								}
+							]
+						},
+						"description": "This operation list or find ServiceSpecification entities"
+					},
+					"response": []
+				},
+				{
+					"name": "Creates a ServiceSpecification",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "dbb84ed8-1a39-422d-b08c-fc23a0e49e13",
+								"exec": [
+									"var json = pm.response.json();",
+									"pm.environment.set(\"id\", json.id);",
+									"",
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Firewall Service\", \n    \"description\": \"This service specification describes a firewall service that can be deployed in customer premise.\", \n    \"version\": \"1.0\", \n    \"validFor\": {\n        \"startDateTime\": \"2017-08-23T00:00:00Z\", \n        \"endDateTime\": \"2018-03-25T00:00:00Z\"\n    }, \n    \"lastUpdate\": \"2017-08-27T00:00:00Z\", \n    \"lifecycleStatus\": \"In Design\", \n    \"isBundle\": false, \n    \"attachment\": [\n        {\n            \"description\": \"This attachment gives a block diagram of the firewall.\", \n            \"href\": \"https://mycsp.com:8080/tmf-api/documentManagement/v4/attachment/22\", \n            \"id\": \"22\", \n            \"url\": \"https://mycsp.com:7070/docloader?docnum=3534536\"\n        }\n    ], \n    \"serviceSpecCharacteristic\": [\n        {\n            \"name\": \"OperatingSystem\", \n            \"description\": \"This characteristic describes the operating system run by the service\", \n            \"valueType\": \"string\",\n            \"configurable\": true, \n            \"validFor\": {\n                \"startDateTime\": \"2017-08-12T00:00:00Z\", \n                \"endDateTime\": \"2018-03-07T00:00:00Z\"\n            }, \n            \"@valueSchemaLocation\": \"\", \n            \"minCardinality\": 0, \n            \"maxCardinality\": 1, \n            \"isUnique\": true, \n            \"regex\": \"\", \n            \"extensible\": false, \n            \"serviceSpecCharacteristicValue\": [\n                {\n                    \"valueType\": \"string\",\n                    \"isDefault\": true, \n                    \"value\": \"Android KitKat\", \n                    \"validFor\": {\n                        \"startDateTime\": \"2017-08-06T00:00:00Z\", \n                        \"endDateTime\": \"2018-03-07T00:00:00Z\"\n                    }                    \n                }\n            ],\n            \"serviceSpecCharRelationship\": [\n                {\n                    \"relationshipType\": \"dependency\",\n                    \"role\": \"\", \n                    \"id\": \"4690\", \n                    \"href\": \"https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v4/serviceSpecificationCharacteristic/4690\", \n                    \"name\": \"OperatingSystem\", \n                    \"validFor\": {\n                        \"startDateTime\": \"2017-08-11T00:00:00Z\", \n                        \"endDateTime\": \"2018-03-07T00:00:00Z\"\n                    }\n                }\n            ], \n            \"@type\": \"ServiceSpecCharacteristic\", \n            \"@schemaLocation\": \"https://mycsp.com:8080/tmf-api/schema/Service/ServiceSpecCharacteristic.schema.json\"\n        },\n        {\n            \"name\": \"Scalability\", \n            \"description\": \"Scalability parameters for this resource facing service spec \", \n            \"valueType\": \"CapabilityScalable\",\n            \"configurable\": true, \n            \"validFor\": {\n                \"startDateTime\": \"2017-08-17T00:00:00Z\", \n                \"endDateTime\": \"2018-03-12T00:00:00Z\"\n            },            \n            \"@valueSchemaLocation\": \"https://mycsp.com:8080/tmf-api/schema/Service/CapabilityScalable.schema.json\", \n            \"minCardinality\": 0, \n            \"maxCardinality\": 1, \n            \"isUnique\": true, \n            \"regex\": \"\", \n            \"extensible\": true, \n            \"serviceSpecCharacteristicValue\": [\n                {\n                    \"valueType\": \"object\", \n                    \"isDefault\": true, \n                    \"value\": {\n                        \"minInstances\": 1, \n                        \"maxInstances\": 1000\n                     },\n                    \"validFor\": {\n                        \"startDateTime\": \"2017-08-17T00:00:00Z\", \n                        \"endDateTime\": \"2018-03-12T00:00:00Z\"\n                    },\n                    \"@type\": \"CapabilityScalable\",\n                    \"@schemaLocation\": \"https://mycsp.com:8080/tmf-api/schema/Service/CapabilityScalable.schema.json\" \n                }\n            ], \n            \"serviceSpecCharRelationship\": [\n            ], \n            \"@type\": \"ServiceSpecCharacteristic\", \n            \"@schemaLocation\": \"https://mycsp.com:8080/tmf-api/schema/Service/ServiceSpecCharacteristic.schema.json\"\n        }\n    ], \n    \"relatedParty\": [\n        {\n            \"href\": \"https://mycsp.com:8080/tmf-api/partyManagement/v4/organization/3643\", \n            \"id\": \"3643\", \n            \"name\": \"Firewall Express\", \n            \"role\": \"Supplier\"\n        }\n    ], \n    \"serviceLevelSpecification\": [\n        {\n            \"href\": \"https://mycsp.com:8080/tmf-api/serviceQualityManagement/v4/serviceLevelSpecification/8899\", \n            \"id\": \"8899\", \n            \"name\": \"Platinum\"\n        }\n    ], \n    \"targetServiceSchema\": {\n        \"@type\": \"RFS\", \n        \"@schemaLocation\": \"https://mycsp.com:8080/tmf-api/schema/Service/RFS.schema.json\"\n    }, \n    \"@type\": \"ResourceFacingServiceSpecification\", \n    \"@schemaLocation\": \"https://mycsp.com:8080/tmf-api/schema/Service/ResourceFacingServiceSpecification.schema.json\", \n    \"@baseType\": \"ServiceSpecification\"\n}"
+						},
+						"url": {
+							"raw": "{{Service_Catalog}}/tmf-api/serviceCatalogManagement/v4/serviceSpecification",
+							"host": [
+								"{{Service_Catalog}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceCatalogManagement",
+								"v4",
+								"serviceSpecification"
+							]
+						},
+						"description": "This operation creates a ServiceSpecification entity."
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieves a ServiceSpecification by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "12916960-a136-48a5-91fb-c43351a0e588",
+								"exec": [
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Service_Catalog}}/tmf-api/serviceCatalogManagement/v4/serviceSpecification/{{id}}?",
+							"host": [
+								"{{Service_Catalog}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceCatalogManagement",
+								"v4",
+								"serviceSpecification",
+								"{{id}}"
+							],
+							"query": [
+								{
+									"key": "fields",
+									"value": "{{fields}}",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						},
+						"description": "This operation retrieves a ServiceSpecification entity. Attribute selection is enabled for all first level attributes."
+					},
+					"response": []
+				},
+				{
+					"name": "Updates partially a ServiceSpecification",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8711163d-ef32-4857-a99c-676b889cf059",
+								"exec": [
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"version\": \"3.1\",\n    \"validFor\": {\n        \"startDateTime\": \"2018-03-23T00:00:00Z\",\n        \"endDateTime\": \"2018-09-25T00:00:00Z\"\n    }\n}"
+						},
+						"url": {
+							"raw": "{{Service_Catalog}}/tmf-api/serviceCatalogManagement/v4/serviceSpecification/{{id}}",
+							"host": [
+								"{{Service_Catalog}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceCatalogManagement",
+								"v4",
+								"serviceSpecification",
+								"{{id}}"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						},
+						"description": "This operation updates partially a ServiceSpecification entity."
+					},
+					"response": []
+				},
+				{
+					"name": "Deletes a ServiceSpecification",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d07d0c04-3a50-44fa-9077-ceb57a090ecd",
+								"exec": [
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Service_Catalog}}/tmf-api/serviceCatalogManagement/v4/serviceSpecification/{{id}}",
+							"host": [
+								"{{Service_Catalog}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceCatalogManagement",
+								"v4",
+								"serviceSpecification",
+								"{{id}}"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						},
+						"description": "This operation deletes a ServiceSpecification entity."
+					},
+					"response": []
+				}
+			],
+			"description": "Folder for serviceSpecification"
+		},
+		{
+			"name": "importJob",
+			"item": [
+				{
+					"name": "List or find ImportJob objects",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e916bb53-4bd3-40a5-bb5f-5d1839e93fde",
+								"exec": [
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Service_Catalog}}/tmf-api/serviceCatalogManagement/v4/importJob?",
+							"host": [
+								"{{Service_Catalog}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceCatalogManagement",
+								"v4",
+								"importJob"
+							],
+							"query": [
+								{
+									"key": "fields",
+									"value": "{{fields}}",
+									"disabled": true
+								},
+								{
+									"key": "offset",
+									"value": "{{offset}}",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "{{limit}}",
+									"disabled": true
+								}
+							]
+						},
+						"description": "This operation list or find ImportJob entities"
+					},
+					"response": []
+				},
+				{
+					"name": "Creates a ImportJob",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ece56b06-4f8a-4903-9e5d-3a6eee3eec59",
+								"exec": [
+									"var json = pm.response.json();",
+									"pm.environment.set(\"id\", json.id);",
+									"",
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"contentType\": \"application/json\", \n    \"errorLog\": \"http://my-platform/daily/logging/errors.log\", \n    \"path\": \"/warning/system\", \n    \"url\": \"https://my-platform/daily/job/NHCFD6\"\n}"
+						},
+						"url": {
+							"raw": "{{Service_Catalog}}/tmf-api/serviceCatalogManagement/v4/importJob",
+							"host": [
+								"{{Service_Catalog}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceCatalogManagement",
+								"v4",
+								"importJob"
+							]
+						},
+						"description": "This operation creates a ImportJob entity."
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieves a ImportJob by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "fa8b998f-31fb-4327-99e3-3631d3eb5eb9",
+								"exec": [
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Service_Catalog}}/tmf-api/serviceCatalogManagement/v4/importJob/{{id}}?",
+							"host": [
+								"{{Service_Catalog}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceCatalogManagement",
+								"v4",
+								"importJob",
+								"{{id}}"
+							],
+							"query": [
+								{
+									"key": "fields",
+									"value": "{{fields}}",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						},
+						"description": "This operation retrieves a ImportJob entity. Attribute selection is enabled for all first level attributes."
+					},
+					"response": []
+				},
+				{
+					"name": "Deletes a ImportJob",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "50b00882-dfa8-429d-af2c-e013a98988d5",
+								"exec": [
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Service_Catalog}}/tmf-api/serviceCatalogManagement/v4/importJob/{{id}}",
+							"host": [
+								"{{Service_Catalog}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceCatalogManagement",
+								"v4",
+								"importJob",
+								"{{id}}"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						},
+						"description": "This operation deletes a ImportJob entity."
+					},
+					"response": []
+				}
+			],
+			"description": "Folder for importJob"
+		},
+		{
+			"name": "exportJob",
+			"item": [
+				{
+					"name": "List or find ExportJob objects",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "fd242546-653e-4c3b-8883-b836f3eb56da",
+								"exec": [
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Service_Catalog}}/tmf-api/serviceCatalogManagement/v4/exportJob?",
+							"host": [
+								"{{Service_Catalog}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceCatalogManagement",
+								"v4",
+								"exportJob"
+							],
+							"query": [
+								{
+									"key": "fields",
+									"value": "{{fields}}",
+									"disabled": true
+								},
+								{
+									"key": "offset",
+									"value": "{{offset}}",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "{{limit}}",
+									"disabled": true
+								}
+							]
+						},
+						"description": "This operation list or find ExportJob entities"
+					},
+					"response": []
+				},
+				{
+					"name": "Creates a ExportJob",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "103ee409-8736-42bf-8fa3-daf8a0306fd9",
+								"exec": [
+									"var json = pm.response.json();",
+									"pm.environment.set(\"id\", json.id);",
+									"",
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"contentType\": \"application/json\", \n    \"errorLog\": \"http://my-platform/daily/logging/errors.log\", \n    \"path\": \"/warning/system\", \n    \"query\": \"advancedCatalog\", \n    \"url\": \"https://my-platform/daily/job/EHCFD6\"\n}"
+						},
+						"url": {
+							"raw": "{{Service_Catalog}}/tmf-api/serviceCatalogManagement/v4/exportJob",
+							"host": [
+								"{{Service_Catalog}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceCatalogManagement",
+								"v4",
+								"exportJob"
+							]
+						},
+						"description": "This operation creates a ExportJob entity."
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieves a ExportJob by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "25c92c66-3ba7-4be6-916e-3c10d886a702",
+								"exec": [
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Service_Catalog}}/tmf-api/serviceCatalogManagement/v4/exportJob/{{id}}?",
+							"host": [
+								"{{Service_Catalog}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceCatalogManagement",
+								"v4",
+								"exportJob",
+								"{{id}}"
+							],
+							"query": [
+								{
+									"key": "fields",
+									"value": "{{fields}}",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						},
+						"description": "This operation retrieves a ExportJob entity. Attribute selection is enabled for all first level attributes."
+					},
+					"response": []
+				},
+				{
+					"name": "Deletes a ExportJob",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f03f9202-e9fd-4c7b-992d-af90172dad9d",
+								"exec": [
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Service_Catalog}}/tmf-api/serviceCatalogManagement/v4/exportJob/{{id}}",
+							"host": [
+								"{{Service_Catalog}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceCatalogManagement",
+								"v4",
+								"exportJob",
+								"{{id}}"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						},
+						"description": "This operation deletes a ExportJob entity."
+					},
+					"response": []
+				}
+			],
+			"description": "Folder for exportJob"
+		},
+		{
+			"name": "hub",
+			"item": [
+				{
+					"name": "Register a listener",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5010b2fe-d5ac-4b9f-9c1e-043e711ea775",
+								"exec": [
+									"var json = pm.response.json();",
+									"pm.environment.set(\"id\", json.id);",
+									"",
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"callback\": \"callback\",\n    \"query\": \"query\"\n}"
+						},
+						"url": {
+							"raw": "{{Service_Catalog}}/tmf-api/serviceCatalogManagement/v4/hub",
+							"host": [
+								"{{Service_Catalog}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceCatalogManagement",
+								"v4",
+								"hub"
+							]
+						},
+						"description": "Sets the communication endpoint address the service instance must use to deliver information about its health state, execution state, failures and metrics."
+					},
+					"response": []
+				},
+				{
+					"name": "Unregister a listener",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c9c0b775-3bc6-4d5d-ad01-c9fddda07cc2",
+								"exec": [
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Service_Catalog}}/tmf-api/serviceCatalogManagement/v4/hub/{{id}}",
+							"host": [
+								"{{Service_Catalog}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceCatalogManagement",
+								"v4",
+								"hub",
+								"{{id}}"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						},
+						"description": "Resets the communication endpoint address the service instance must use to deliver information about its health state, execution state, failures and metrics."
+					},
+					"response": []
+				}
+			],
+			"description": "Folder for hub"
+		},
+		{
+			"name": "listener",
+			"item": [
+				{
+					"name": "Client listener for entity ServiceSpecificationCreateNotification",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c32c2931-a002-4392-be73-25f0f18310ab",
+								"exec": [
+									"var json = pm.response.json();",
+									"pm.environment.set(\"id\", json.id);",
+									"",
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"eventId\": \"00001\",\n  \"eventTime\": \"2000-01-23T04:56:07.000Z\",\n  \"eventType\": \"ServiceSpecificationCreateNotification\",\n  \"event\": {\n    \"serviceSpecification\": {\n      \"name\": \"Firewall Service\",\n      \"description\": \"This service specification describes a firewall service that can be deployed in customer premise.\",\n      \"version\": \"1.0\",\n      \"validFor\": {\n        \"startDateTime\": \"2017-08-23T00:00:00Z\",\n        \"endDateTime\": \"2018-03-25T00:00:00Z\"\n      },\n      \"lastUpdate\": \"2019-04-02T21:41:17.547Z\",\n      \"lifecycleStatus\": \"In Design\",\n      \"isBundle\": false,\n      \"attachment\": [\n        {\n          \"description\": \"This attachment gives a block diagram of the firewall.\",\n          \"href\": \"https://mycsp.com:8080/tmf-api/documentManagement/v4/attachment/22\",\n          \"id\": \"22\",\n          \"url\": \"https://mycsp.com:7070/docloader?docnum=3534536\"\n        }\n      ],\n      \"serviceSpecCharacteristic\": [\n        {\n          \"name\": \"OperatingSystem\",\n          \"description\": \"This characteristic describes the operating system run by the service\",\n          \"valueType\": \"string\",\n          \"configurable\": true,\n          \"validFor\": {\n            \"startDateTime\": \"2017-08-12T00:00:00Z\",\n            \"endDateTime\": \"2018-03-07T00:00:00Z\"\n          },\n          \"@valueSchemaLocation\": \"\",\n          \"minCardinality\": 0,\n          \"maxCardinality\": 1,\n          \"isUnique\": true,\n          \"regex\": \"\",\n          \"extensible\": false,\n          \"serviceSpecCharacteristicValue\": [\n            {\n              \"valueType\": \"string\",\n              \"isDefault\": true,\n              \"value\": \"Android KitKat\",\n              \"validFor\": {\n                \"startDateTime\": \"2017-08-06T00:00:00Z\",\n                \"endDateTime\": \"2018-03-07T00:00:00Z\"\n              }\n            }\n          ],\n          \"serviceSpecCharRelationship\": [\n            {\n              \"relationshipType\": \"dependency\",\n              \"role\": \"\",\n              \"id\": \"4690\",\n              \"href\": \"https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v4/serviceSpecificationCharacteristic/4690\",\n              \"name\": \"OperatingSystem\",\n              \"validFor\": {\n                \"startDateTime\": \"2017-08-11T00:00:00Z\",\n                \"endDateTime\": \"2018-03-07T00:00:00Z\"\n              }\n            }\n          ],\n          \"@type\": \"ServiceSpecCharacteristic\",\n          \"@schemaLocation\": \"https://mycsp.com:8080/tmf-api/schema/Service/ServiceSpecCharacteristic.schema.json\"\n        },\n        {\n          \"name\": \"Scalability\",\n          \"description\": \"Scalability parameters for this resource facing service spec \",\n          \"valueType\": \"CapabilityScalable\",\n          \"configurable\": true,\n          \"validFor\": {\n            \"startDateTime\": \"2017-08-17T00:00:00Z\",\n            \"endDateTime\": \"2018-03-12T00:00:00Z\"\n          },\n          \"@valueSchemaLocation\": \"https://mycsp.com:8080/tmf-api/schema/Service/CapabilityScalable.schema.json\",\n          \"minCardinality\": 0,\n          \"maxCardinality\": 1,\n          \"isUnique\": true,\n          \"regex\": \"\",\n          \"extensible\": true,\n          \"serviceSpecCharacteristicValue\": [\n            {\n              \"valueType\": \"object\",\n              \"isDefault\": true,\n              \"value\": {\n                \"minInstances\": 1,\n                \"maxInstances\": 1000\n              },\n              \"validFor\": {\n                \"startDateTime\": \"2017-08-17T00:00:00Z\",\n                \"endDateTime\": \"2018-03-12T00:00:00Z\"\n              },\n              \"@type\": \"CapabilityScalable\",\n              \"@schemaLocation\": \"https://mycsp.com:8080/tmf-api/schema/Service/CapabilityScalable.schema.json\"\n            }\n          ],\n          \"serviceSpecCharRelationship\": [],\n          \"@type\": \"ServiceSpecCharacteristic\",\n          \"@schemaLocation\": \"https://mycsp.com:8080/tmf-api/schema/Service/ServiceSpecCharacteristic.schema.json\"\n        }\n      ],\n      \"relatedParty\": [\n        {\n          \"href\": \"https://mycsp.com:8080/tmf-api/partyManagement/v4/organization/3643\",\n          \"id\": \"3643\",\n          \"name\": \"Firewall Express\",\n          \"role\": \"Supplier\"\n        }\n      ],\n      \"serviceLevelSpecification\": [\n        {\n          \"href\": \"https://mycsp.com:8080/tmf-api/serviceQualityManagement/v4/serviceLevelSpecification/8899\",\n          \"id\": \"8899\",\n          \"name\": \"Platinum\"\n        }\n      ],\n      \"targetServiceSchema\": {\n        \"@type\": \"RFS\",\n        \"@schemaLocation\": \"https://mycsp.com:8080/tmf-api/schema/Service/RFS.schema.json\"\n      },\n      \"@type\": \"ResourceFacingServiceSpecification\",\n      \"@schemaLocation\": \"https://mycsp.com:8080/tmf-api/schema/Service/ResourceFacingServiceSpecification.schema.json\",\n      \"@baseType\": \"ServiceSpecification\",\n      \"id\": \"aee25d86-9c92-4fe6-a5fe-c4edaca713bf\",\n      \"href\": \"https://api-service-catalog-management-v4-0-0.mybluemix.net/tmf-api/serviceCatalogManagement/v4/serviceSpecification/aee25d86-9c92-4fe6-a5fe-c4edaca713bf\"\n    }\n  }\n}"
+						},
+						"url": {
+							"raw": "{{Service_Catalog}}/tmf-api/serviceCatalogManagement/v4/listener/serviceSpecificationCreateNotification",
+							"host": [
+								"{{Service_Catalog}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceCatalogManagement",
+								"v4",
+								"listener",
+								"serviceSpecificationCreateNotification"
+							]
+						},
+						"description": "Example of a client listener for receiving the notification ServiceSpecificationCreateNotification"
+					},
+					"response": []
+				},
+				{
+					"name": "Client listener for entity ServiceSpecificationChangeNotification",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9f5caf57-1cae-4944-804d-55cda84b1634",
+								"exec": [
+									"var json = pm.response.json();",
+									"pm.environment.set(\"id\", json.id);",
+									"",
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"eventId\": \"00001\",\n    \"eventTime\": \"2000-01-23T04:56:07.000Z\",\n    \"eventType\": \"ServiceSpecificationChangeNotification\",\n    \"event\": {\n        \"serviceSpecification\": {\n            \"name\": \"Firewall Service\",\n            \"description\": \"This service specification describes a firewall service that can be deployed in customer premise.\",\n            \"version\": \"1.0\",\n            \"validFor\": {\n                \"startDateTime\": \"2017-08-23T00:00:00Z\",\n                \"endDateTime\": \"2018-03-25T00:00:00Z\"\n            },\n            \"lastUpdate\": \"2019-04-02T21:41:17.547Z\",\n            \"lifecycleStatus\": \"In Design\",\n            \"isBundle\": false,\n            \"attachment\": [\n                {\n                    \"description\": \"This attachment gives a block diagram of the firewall.\",\n                    \"href\": \"https://mycsp.com:8080/tmf-api/documentManagement/v4/attachment/22\",\n                    \"id\": \"22\",\n                    \"url\": \"https://mycsp.com:7070/docloader?docnum=3534536\"\n                }\n            ],\n            \"serviceSpecCharacteristic\": [\n                {\n                    \"name\": \"OperatingSystem\",\n                    \"description\": \"This characteristic describes the operating system run by the service\",\n                    \"valueType\": \"string\",\n                    \"configurable\": true,\n                    \"validFor\": {\n                        \"startDateTime\": \"2017-08-12T00:00:00Z\",\n                        \"endDateTime\": \"2018-03-07T00:00:00Z\"\n                    },\n                    \"@valueSchemaLocation\": \"\",\n                    \"minCardinality\": 0,\n                    \"maxCardinality\": 1,\n                    \"isUnique\": true,\n                    \"regex\": \"\",\n                    \"extensible\": false,\n                    \"serviceSpecCharacteristicValue\": [\n                        {\n                            \"valueType\": \"string\",\n                            \"isDefault\": true,\n                            \"value\": \"Android KitKat\",\n                            \"validFor\": {\n                                \"startDateTime\": \"2017-08-06T00:00:00Z\",\n                                \"endDateTime\": \"2018-03-07T00:00:00Z\"\n                            }\n                        }\n                    ],\n                    \"serviceSpecCharRelationship\": [\n                        {\n                            \"relationshipType\": \"dependency\",\n                            \"role\": \"\",\n                            \"id\": \"4690\",\n                            \"href\": \"https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v4/serviceSpecificationCharacteristic/4690\",\n                            \"name\": \"OperatingSystem\",\n                            \"validFor\": {\n                                \"startDateTime\": \"2017-08-11T00:00:00Z\",\n                                \"endDateTime\": \"2018-03-07T00:00:00Z\"\n                            }\n                        }\n                    ],\n                    \"@type\": \"ServiceSpecCharacteristic\",\n                    \"@schemaLocation\": \"https://mycsp.com:8080/tmf-api/schema/Service/ServiceSpecCharacteristic.schema.json\"\n                },\n                {\n                    \"name\": \"Scalability\",\n                    \"description\": \"Scalability parameters for this resource facing service spec \",\n                    \"valueType\": \"CapabilityScalable\",\n                    \"configurable\": true,\n                    \"validFor\": {\n                        \"startDateTime\": \"2017-08-17T00:00:00Z\",\n                        \"endDateTime\": \"2018-03-12T00:00:00Z\"\n                    },\n                    \"@valueSchemaLocation\": \"https://mycsp.com:8080/tmf-api/schema/Service/CapabilityScalable.schema.json\",\n                    \"minCardinality\": 0,\n                    \"maxCardinality\": 1,\n                    \"isUnique\": true,\n                    \"regex\": \"\",\n                    \"extensible\": true,\n                    \"serviceSpecCharacteristicValue\": [\n                        {\n                            \"valueType\": \"object\",\n                            \"isDefault\": true,\n                            \"value\": {\n                                \"minInstances\": 1,\n                                \"maxInstances\": 1000\n                            },\n                            \"validFor\": {\n                                \"startDateTime\": \"2017-08-17T00:00:00Z\",\n                                \"endDateTime\": \"2018-03-12T00:00:00Z\"\n                            },\n                            \"@type\": \"CapabilityScalable\",\n                            \"@schemaLocation\": \"https://mycsp.com:8080/tmf-api/schema/Service/CapabilityScalable.schema.json\"\n                        }\n                    ],\n                    \"serviceSpecCharRelationship\": [],\n                    \"@type\": \"ServiceSpecCharacteristic\",\n                    \"@schemaLocation\": \"https://mycsp.com:8080/tmf-api/schema/Service/ServiceSpecCharacteristic.schema.json\"\n                }\n            ],\n            \"relatedParty\": [\n                {\n                    \"href\": \"https://mycsp.com:8080/tmf-api/partyManagement/v4/organization/3643\",\n                    \"id\": \"3643\",\n                    \"name\": \"Firewall Express\",\n                    \"role\": \"Supplier\"\n                }\n            ],\n            \"serviceLevelSpecification\": [\n                {\n                    \"href\": \"https://mycsp.com:8080/tmf-api/serviceQualityManagement/v4/serviceLevelSpecification/8899\",\n                    \"id\": \"8899\",\n                    \"name\": \"Platinum\"\n                }\n            ],\n            \"targetServiceSchema\": {\n                \"@type\": \"RFS\",\n                \"@schemaLocation\": \"https://mycsp.com:8080/tmf-api/schema/Service/RFS.schema.json\"\n            },\n            \"@type\": \"ResourceFacingServiceSpecification\",\n            \"@schemaLocation\": \"https://mycsp.com:8080/tmf-api/schema/Service/ResourceFacingServiceSpecification.schema.json\",\n            \"@baseType\": \"ServiceSpecification\",\n            \"id\": \"aee25d86-9c92-4fe6-a5fe-c4edaca713bf\",\n            \"href\": \"https://api-service-catalog-management-v4-0-0.mybluemix.net/tmf-api/serviceCatalogManagement/v4/serviceSpecification/aee25d86-9c92-4fe6-a5fe-c4edaca713bf\"\n        }\n    }\n}"
+						},
+						"url": {
+							"raw": "{{Service_Catalog}}/tmf-api/serviceCatalogManagement/v4/listener/serviceSpecificationChangeNotification",
+							"host": [
+								"{{Service_Catalog}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceCatalogManagement",
+								"v4",
+								"listener",
+								"serviceSpecificationChangeNotification"
+							]
+						},
+						"description": "Example of a client listener for receiving the notification ServiceSpecificationChangeNotification"
+					},
+					"response": []
+				},
+				{
+					"name": "Client listener for entity ServiceSpecificationDeleteNotification",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "24856b19-87b7-43bb-b9b7-a1357327f3b8",
+								"exec": [
+									"var json = pm.response.json();",
+									"pm.environment.set(\"id\", json.id);",
+									"",
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"eventId\": \"00001\",\n    \"eventTime\": \"2000-01-23T04:56:07.000Z\",\n    \"eventType\": \"ServiceSpecificationDeleteNotification\",\n    \"event\": {\n        \"serviceSpecification\": {\n            \"name\": \"Firewall Service\",\n            \"description\": \"This service specification describes a firewall service that can be deployed in customer premise.\",\n            \"version\": \"1.0\",\n            \"validFor\": {\n                \"startDateTime\": \"2017-08-23T00:00:00Z\",\n                \"endDateTime\": \"2018-03-25T00:00:00Z\"\n            },\n            \"lastUpdate\": \"2019-04-02T21:41:17.547Z\",\n            \"lifecycleStatus\": \"In Design\",\n            \"isBundle\": false,\n            \"attachment\": [\n                {\n                    \"description\": \"This attachment gives a block diagram of the firewall.\",\n                    \"href\": \"https://mycsp.com:8080/tmf-api/documentManagement/v4/attachment/22\",\n                    \"id\": \"22\",\n                    \"url\": \"https://mycsp.com:7070/docloader?docnum=3534536\"\n                }\n            ],\n            \"serviceSpecCharacteristic\": [\n                {\n                    \"name\": \"OperatingSystem\",\n                    \"description\": \"This characteristic describes the operating system run by the service\",\n                    \"valueType\": \"string\",\n                    \"configurable\": true,\n                    \"validFor\": {\n                        \"startDateTime\": \"2017-08-12T00:00:00Z\",\n                        \"endDateTime\": \"2018-03-07T00:00:00Z\"\n                    },\n                    \"@valueSchemaLocation\": \"\",\n                    \"minCardinality\": 0,\n                    \"maxCardinality\": 1,\n                    \"isUnique\": true,\n                    \"regex\": \"\",\n                    \"extensible\": false,\n                    \"serviceSpecCharacteristicValue\": [\n                        {\n                            \"valueType\": \"string\",\n                            \"isDefault\": true,\n                            \"value\": \"Android KitKat\",\n                            \"validFor\": {\n                                \"startDateTime\": \"2017-08-06T00:00:00Z\",\n                                \"endDateTime\": \"2018-03-07T00:00:00Z\"\n                            }\n                        }\n                    ],\n                    \"serviceSpecCharRelationship\": [\n                        {\n                            \"relationshipType\": \"dependency\",\n                            \"role\": \"\",\n                            \"id\": \"4690\",\n                            \"href\": \"https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v4/serviceSpecificationCharacteristic/4690\",\n                            \"name\": \"OperatingSystem\",\n                            \"validFor\": {\n                                \"startDateTime\": \"2017-08-11T00:00:00Z\",\n                                \"endDateTime\": \"2018-03-07T00:00:00Z\"\n                            }\n                        }\n                    ],\n                    \"@type\": \"ServiceSpecCharacteristic\",\n                    \"@schemaLocation\": \"https://mycsp.com:8080/tmf-api/schema/Service/ServiceSpecCharacteristic.schema.json\"\n                },\n                {\n                    \"name\": \"Scalability\",\n                    \"description\": \"Scalability parameters for this resource facing service spec \",\n                    \"valueType\": \"CapabilityScalable\",\n                    \"configurable\": true,\n                    \"validFor\": {\n                        \"startDateTime\": \"2017-08-17T00:00:00Z\",\n                        \"endDateTime\": \"2018-03-12T00:00:00Z\"\n                    },\n                    \"@valueSchemaLocation\": \"https://mycsp.com:8080/tmf-api/schema/Service/CapabilityScalable.schema.json\",\n                    \"minCardinality\": 0,\n                    \"maxCardinality\": 1,\n                    \"isUnique\": true,\n                    \"regex\": \"\",\n                    \"extensible\": true,\n                    \"serviceSpecCharacteristicValue\": [\n                        {\n                            \"valueType\": \"object\",\n                            \"isDefault\": true,\n                            \"value\": {\n                                \"minInstances\": 1,\n                                \"maxInstances\": 1000\n                            },\n                            \"validFor\": {\n                                \"startDateTime\": \"2017-08-17T00:00:00Z\",\n                                \"endDateTime\": \"2018-03-12T00:00:00Z\"\n                            },\n                            \"@type\": \"CapabilityScalable\",\n                            \"@schemaLocation\": \"https://mycsp.com:8080/tmf-api/schema/Service/CapabilityScalable.schema.json\"\n                        }\n                    ],\n                    \"serviceSpecCharRelationship\": [],\n                    \"@type\": \"ServiceSpecCharacteristic\",\n                    \"@schemaLocation\": \"https://mycsp.com:8080/tmf-api/schema/Service/ServiceSpecCharacteristic.schema.json\"\n                }\n            ],\n            \"relatedParty\": [\n                {\n                    \"href\": \"https://mycsp.com:8080/tmf-api/partyManagement/v4/organization/3643\",\n                    \"id\": \"3643\",\n                    \"name\": \"Firewall Express\",\n                    \"role\": \"Supplier\"\n                }\n            ],\n            \"serviceLevelSpecification\": [\n                {\n                    \"href\": \"https://mycsp.com:8080/tmf-api/serviceQualityManagement/v4/serviceLevelSpecification/8899\",\n                    \"id\": \"8899\",\n                    \"name\": \"Platinum\"\n                }\n            ],\n            \"targetServiceSchema\": {\n                \"@type\": \"RFS\",\n                \"@schemaLocation\": \"https://mycsp.com:8080/tmf-api/schema/Service/RFS.schema.json\"\n            },\n            \"@type\": \"ResourceFacingServiceSpecification\",\n            \"@schemaLocation\": \"https://mycsp.com:8080/tmf-api/schema/Service/ResourceFacingServiceSpecification.schema.json\",\n            \"@baseType\": \"ServiceSpecification\",\n            \"id\": \"aee25d86-9c92-4fe6-a5fe-c4edaca713bf\",\n            \"href\": \"https://api-service-catalog-management-v4-0-0.mybluemix.net/tmf-api/serviceCatalogManagement/v4/serviceSpecification/aee25d86-9c92-4fe6-a5fe-c4edaca713bf\"\n        }\n    }\n}"
+						},
+						"url": {
+							"raw": "{{Service_Catalog}}/tmf-api/serviceCatalogManagement/v4/listener/serviceSpecificationDeleteNotification",
+							"host": [
+								"{{Service_Catalog}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceCatalogManagement",
+								"v4",
+								"listener",
+								"serviceSpecificationDeleteNotification"
+							]
+						},
+						"description": "Example of a client listener for receiving the notification ServiceSpecificationDeleteNotification"
+					},
+					"response": []
+				},
+				{
+					"name": "Client listener for entity ServiceCandidateCreateNotification",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2d987ed6-779d-410c-ba75-4b15304b1c02",
+								"exec": [
+									"var json = pm.response.json();",
+									"pm.environment.set(\"id\", json.id);",
+									"",
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"eventId\": \"00001\",\n  \"eventTime\": \"2000-01-23T04:56:07.000Z\",\n  \"eventType\": \"serviceCandidateCreateNotification\",\n  \"event\": {\n    \"serviceCandidate\": {\n      \"name\": \"TVServiceCandidate\",\n      \"description\": \"This service candidate allows provision of TV service\",\n      \"version\": \"2.1\",\n      \"validFor\": {\n        \"startDateTime\": \"2017-08-23T00:00:00Z\",\n        \"endDateTime\": \"2018-03-25T00:00:00Z\"\n      },\n      \"category\": [\n        {\n          \"id\": \"5980\",\n          \"href\": \"https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v4/serviceCategory/5980\",\n          \"name\": \"TV\"\n        }\n      ],\n      \"serviceSpecification\": {\n        \"id\": \"9600\",\n        \"href\": \"https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v4/serviceSpecification/9600\",\n        \"version\": \"2.1\",\n        \"name\": \"CFSS_TV\",\n        \"@type\": \"CustomerFacingServiceSpecification\"\n      },\n      \"@type\": \"ServiceCandidate\",\n      \"@schemaLocation\": \"https://mycsp.com:8080/tmf-api/schema/Service/ServiceCandidate.schema.json\",\n      \"@baseType\": \"\",\n      \"id\": \"38c8358d-1166-4494-8d93-34c170987d18\",\n      \"href\": \"https://api-service-catalog-management-v4-0-0.mybluemix.net/tmf-api/serviceCatalogManagement/v4/serviceCandidate/38c8358d-1166-4494-8d93-34c170987d18\",\n      \"lastUpdate\": \"2019-04-02T21:42:51.278Z\"\n    }\n  }\n}"
+						},
+						"url": {
+							"raw": "{{Service_Catalog}}/tmf-api/serviceCatalogManagement/v4/listener/serviceCandidateCreateNotification",
+							"host": [
+								"{{Service_Catalog}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceCatalogManagement",
+								"v4",
+								"listener",
+								"serviceCandidateCreateNotification"
+							]
+						},
+						"description": "Example of a client listener for receiving the notification ServiceCandidateCreateNotification"
+					},
+					"response": []
+				},
+				{
+					"name": "Client listener for entity ServiceCandidateChangeNotification",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3d2f732e-bc4a-48bc-9282-69bd11b592ac",
+								"exec": [
+									"var json = pm.response.json();",
+									"pm.environment.set(\"id\", json.id);",
+									"",
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"eventId\": \"00001\",\n  \"eventTime\": \"2000-01-23T04:56:07.000Z\",\n  \"eventType\": \"serviceCandidateChangeNotification\",\n  \"event\": {\n    \"serviceCandidate\": {\n      \"name\": \"TVServiceCandidate\",\n      \"description\": \"This service candidate allows provision of TV service\",\n      \"version\": \"2.1\",\n      \"validFor\": {\n        \"startDateTime\": \"2017-08-23T00:00:00Z\",\n        \"endDateTime\": \"2018-03-25T00:00:00Z\"\n      },\n      \"category\": [\n        {\n          \"id\": \"5980\",\n          \"href\": \"https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v4/serviceCategory/5980\",\n          \"name\": \"TV\"\n        }\n      ],\n      \"serviceSpecification\": {\n        \"id\": \"9600\",\n        \"href\": \"https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v4/serviceSpecification/9600\",\n        \"version\": \"2.1\",\n        \"name\": \"CFSS_TV\",\n        \"@type\": \"CustomerFacingServiceSpecification\"\n      },\n      \"@type\": \"ServiceCandidate\",\n      \"@schemaLocation\": \"https://mycsp.com:8080/tmf-api/schema/Service/ServiceCandidate.schema.json\",\n      \"@baseType\": \"\",\n      \"id\": \"38c8358d-1166-4494-8d93-34c170987d18\",\n      \"href\": \"https://api-service-catalog-management-v4-0-0.mybluemix.net/tmf-api/serviceCatalogManagement/v4/serviceCandidate/38c8358d-1166-4494-8d93-34c170987d18\",\n      \"lastUpdate\": \"2019-04-02T21:42:51.278Z\"\n    }\n  }\n}"
+						},
+						"url": {
+							"raw": "{{Service_Catalog}}/tmf-api/serviceCatalogManagement/v4/listener/serviceCandidateChangeNotification",
+							"host": [
+								"{{Service_Catalog}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceCatalogManagement",
+								"v4",
+								"listener",
+								"serviceCandidateChangeNotification"
+							]
+						},
+						"description": "Example of a client listener for receiving the notification ServiceCandidateChangeNotification"
+					},
+					"response": []
+				},
+				{
+					"name": "Client listener for entity ServiceCandidateDeleteNotification",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "524a83ea-71c5-48c0-b1d8-bf345bd64530",
+								"exec": [
+									"var json = pm.response.json();",
+									"pm.environment.set(\"id\", json.id);",
+									"",
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"eventId\": \"00001\",\n  \"eventTime\": \"2000-01-23T04:56:07.000Z\",\n  \"eventType\": \"serviceCandidateDeleteNotification\",\n  \"event\": {\n    \"serviceCandidate\": {\n      \"name\": \"TVServiceCandidate\",\n      \"description\": \"This service candidate allows provision of TV service\",\n      \"version\": \"2.1\",\n      \"validFor\": {\n        \"startDateTime\": \"2017-08-23T00:00:00Z\",\n        \"endDateTime\": \"2018-03-25T00:00:00Z\"\n      },\n      \"category\": [\n        {\n          \"id\": \"5980\",\n          \"href\": \"https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v4/serviceCategory/5980\",\n          \"name\": \"TV\"\n        }\n      ],\n      \"serviceSpecification\": {\n        \"id\": \"9600\",\n        \"href\": \"https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v4/serviceSpecification/9600\",\n        \"version\": \"2.1\",\n        \"name\": \"CFSS_TV\",\n        \"@type\": \"CustomerFacingServiceSpecification\"\n      },\n      \"@type\": \"ServiceCandidate\",\n      \"@schemaLocation\": \"https://mycsp.com:8080/tmf-api/schema/Service/ServiceCandidate.schema.json\",\n      \"@baseType\": \"\",\n      \"id\": \"38c8358d-1166-4494-8d93-34c170987d18\",\n      \"href\": \"https://api-service-catalog-management-v4-0-0.mybluemix.net/tmf-api/serviceCatalogManagement/v4/serviceCandidate/38c8358d-1166-4494-8d93-34c170987d18\",\n      \"lastUpdate\": \"2019-04-02T21:42:51.278Z\"\n    }\n  }\n}"
+						},
+						"url": {
+							"raw": "{{Service_Catalog}}/tmf-api/serviceCatalogManagement/v4/listener/serviceCandidateDeleteNotification",
+							"host": [
+								"{{Service_Catalog}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceCatalogManagement",
+								"v4",
+								"listener",
+								"serviceCandidateDeleteNotification"
+							]
+						},
+						"description": "Example of a client listener for receiving the notification ServiceCandidateDeleteNotification"
+					},
+					"response": []
+				},
+				{
+					"name": "Client listener for entity ServiceCategoryCreateNotification",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "914640d9-997c-4a01-956c-16657f9862b9",
+								"exec": [
+									"var json = pm.response.json();",
+									"pm.environment.set(\"id\", json.id);",
+									"",
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"eventId\": \"00001\",\n  \"eventTime\": \"2000-01-23T04:56:07.000Z\",\n  \"eventType\": \"serviceCategoryCreateNotification\",\n  \"event\": {\n    \"serviceCategory\": {\n      \"name\": \"Cloud Services\",\n      \"description\": \"A category to hold all available cloud service offers\",\n      \"isRoot\": true,\n      \"id\": \"42650ef1-d370-4c5f-a5a4-1d75310687d6\",\n      \"href\": \"https://api-service-catalog-management-v4-0-0.mybluemix.net/tmf-api/serviceCatalogManagement/v4/serviceCategory/42650ef1-d370-4c5f-a5a4-1d75310687d6\",\n      \"lastUpdate\": \"2019-04-02T21:44:07.534Z\",\n      \"@schemaLocation\": \"https://api-service-catalog-management-v4-0-0.mybluemix.net/docs/#/\",\n      \"@type\": \"ServiceCategory\",\n      \"@baseType\": \"ServiceCategory\"\n  }\n}\n}"
+						},
+						"url": {
+							"raw": "{{Service_Catalog}}/tmf-api/serviceCatalogManagement/v4/listener/serviceCategoryCreateNotification",
+							"host": [
+								"{{Service_Catalog}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceCatalogManagement",
+								"v4",
+								"listener",
+								"serviceCategoryCreateNotification"
+							]
+						},
+						"description": "Example of a client listener for receiving the notification ServiceCategoryCreateNotification"
+					},
+					"response": []
+				},
+				{
+					"name": "Client listener for entity ServiceCategoryChangeNotification",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "780f1f5a-c6a4-4474-8cca-b2b19208dd1c",
+								"exec": [
+									"var json = pm.response.json();",
+									"pm.environment.set(\"id\", json.id);",
+									"",
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"eventId\": \"00001\",\n  \"eventTime\": \"2000-01-23T04:56:07.000Z\",\n  \"eventType\": \"serviceCategoryChangeNotification\",\n  \"event\": {\n    \"serviceCategory\": {\n      \"name\": \"Cloud Services\",\n      \"description\": \"A category to hold all available cloud service offers\",\n      \"isRoot\": true,\n      \"id\": \"42650ef1-d370-4c5f-a5a4-1d75310687d6\",\n      \"href\": \"https://api-service-catalog-management-v4-0-0.mybluemix.net/tmf-api/serviceCatalogManagement/v4/serviceCategory/42650ef1-d370-4c5f-a5a4-1d75310687d6\",\n      \"lastUpdate\": \"2019-04-02T21:44:07.534Z\",\n      \"@schemaLocation\": \"https://api-service-catalog-management-v4-0-0.mybluemix.net/docs/#/\",\n      \"@type\": \"ServiceCategory\",\n      \"@baseType\": \"ServiceCategory\"\n  }\n}\n}"
+						},
+						"url": {
+							"raw": "{{Service_Catalog}}/tmf-api/serviceCatalogManagement/v4/listener/serviceCategoryChangeNotification",
+							"host": [
+								"{{Service_Catalog}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceCatalogManagement",
+								"v4",
+								"listener",
+								"serviceCategoryChangeNotification"
+							]
+						},
+						"description": "Example of a client listener for receiving the notification ServiceCategoryChangeNotification"
+					},
+					"response": []
+				},
+				{
+					"name": "Client listener for entity ServiceCategoryDeleteNotification",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "becd8ccc-f7f4-402d-aa7d-bdf6b809a0b8",
+								"exec": [
+									"var json = pm.response.json();",
+									"pm.environment.set(\"id\", json.id);",
+									"",
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"eventId\": \"00001\",\n  \"eventTime\": \"2000-01-23T04:56:07.000Z\",\n  \"eventType\": \"serviceCategoryDeleteNotification\",\n  \"event\": {\n    \"serviceCategory\": {\n      \"name\": \"Cloud Services\",\n      \"description\": \"A category to hold all available cloud service offers\",\n      \"isRoot\": true,\n      \"id\": \"42650ef1-d370-4c5f-a5a4-1d75310687d6\",\n      \"href\": \"https://api-service-catalog-management-v4-0-0.mybluemix.net/tmf-api/serviceCatalogManagement/v4/serviceCategory/42650ef1-d370-4c5f-a5a4-1d75310687d6\",\n      \"lastUpdate\": \"2019-04-02T21:44:07.534Z\",\n      \"@schemaLocation\": \"https://api-service-catalog-management-v4-0-0.mybluemix.net/docs/#/\",\n      \"@type\": \"ServiceCategory\",\n      \"@baseType\": \"ServiceCategory\"\n  }\n}\n}"
+						},
+						"url": {
+							"raw": "{{Service_Catalog}}/tmf-api/serviceCatalogManagement/v4/listener/serviceCategoryDeleteNotification",
+							"host": [
+								"{{Service_Catalog}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceCatalogManagement",
+								"v4",
+								"listener",
+								"serviceCategoryDeleteNotification"
+							]
+						},
+						"description": "Example of a client listener for receiving the notification ServiceCategoryDeleteNotification"
+					},
+					"response": []
+				},
+				{
+					"name": "Client listener for entity ServiceCatalogCreateNotification",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e15a21b8-1f38-43f5-9229-a476461ba313",
+								"exec": [
+									"var json = pm.response.json();",
+									"pm.environment.set(\"id\", json.id);",
+									"",
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"eventId\": \"00001\",\n  \"eventTime\": \"2000-01-23T04:56:07.000Z\",\n  \"eventType\": \"serviceCatalogCreateNotification\",\n  \"event\": {\n    \"serviceCatalog\": {\n      \"name\": \"Catalog Wholesale Business\",\n      \"id\": \"45933f7a-af1a-412c-8f1c-e8315a46bcad\",\n      \"href\": \"https://api-service-catalog-management-v4-0-0.mybluemix.net/tmf-api/serviceCatalogManagement/v4/serviceCatalog/45933f7a-af1a-412c-8f1c-e8315a46bcad\",\n      \"lastUpdate\": \"2019-04-02T21:45:18.602Z\",\n      \"@schemaLocation\": \"https://api-service-catalog-management-v4-0-0.mybluemix.net/docs/#/\",\n      \"@type\": \"ServiceCatalog\",\n      \"@baseType\": \"ServiceCatalog\"\n    }\n  }\n}"
+						},
+						"url": {
+							"raw": "{{Service_Catalog}}/tmf-api/serviceCatalogManagement/v4/listener/serviceCatalogCreateNotification",
+							"host": [
+								"{{Service_Catalog}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceCatalogManagement",
+								"v4",
+								"listener",
+								"serviceCatalogCreateNotification"
+							]
+						},
+						"description": "Example of a client listener for receiving the notification ServiceCatalogCreateNotification"
+					},
+					"response": []
+				},
+				{
+					"name": "Client listener for entity ServiceCatalogChangeNotification",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ecb350fd-f59c-4b7e-b651-f5e81259a57c",
+								"exec": [
+									"var json = pm.response.json();",
+									"pm.environment.set(\"id\", json.id);",
+									"",
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"eventId\": \"00001\",\n  \"eventTime\": \"2000-01-23T04:56:07.000Z\",\n  \"eventType\": \"serviceCatalogChangeNotification\",\n  \"event\": {\n    \"serviceCatalog\": {\n      \"name\": \"Catalog Wholesale Business\",\n      \"id\": \"45933f7a-af1a-412c-8f1c-e8315a46bcad\",\n      \"href\": \"https://api-service-catalog-management-v4-0-0.mybluemix.net/tmf-api/serviceCatalogManagement/v4/serviceCatalog/45933f7a-af1a-412c-8f1c-e8315a46bcad\",\n      \"lastUpdate\": \"2019-04-02T21:45:18.602Z\",\n      \"@schemaLocation\": \"https://api-service-catalog-management-v4-0-0.mybluemix.net/docs/#/\",\n      \"@type\": \"ServiceCatalog\",\n      \"@baseType\": \"ServiceCatalog\"\n    }\n  }\n}"
+						},
+						"url": {
+							"raw": "{{Service_Catalog}}/tmf-api/serviceCatalogManagement/v4/listener/serviceCatalogChangeNotification",
+							"host": [
+								"{{Service_Catalog}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceCatalogManagement",
+								"v4",
+								"listener",
+								"serviceCatalogChangeNotification"
+							]
+						},
+						"description": "Example of a client listener for receiving the notification ServiceCatalogChangeNotification"
+					},
+					"response": []
+				},
+				{
+					"name": "Client listener for entity ServiceCatalogBatchNotification",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "11781a5a-8be1-412b-98a2-00773e2b6874",
+								"exec": [
+									"var json = pm.response.json();",
+									"pm.environment.set(\"id\", json.id);",
+									"",
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"eventId\": \"00001\",\n  \"eventTime\": \"2000-01-23T04:56:07.000Z\",\n  \"eventType\": \"serviceCatalogBatchNotification\",\n  \"event\": {\n    \"serviceCatalog\": {\n      \"name\": \"Catalog Wholesale Business\",\n      \"id\": \"45933f7a-af1a-412c-8f1c-e8315a46bcad\",\n      \"href\": \"https://api-service-catalog-management-v4-0-0.mybluemix.net/tmf-api/serviceCatalogManagement/v4/serviceCatalog/45933f7a-af1a-412c-8f1c-e8315a46bcad\",\n      \"lastUpdate\": \"2019-04-02T21:45:18.602Z\",\n      \"@schemaLocation\": \"https://api-service-catalog-management-v4-0-0.mybluemix.net/docs/#/\",\n      \"@type\": \"ServiceCatalog\",\n      \"@baseType\": \"ServiceCatalog\"\n    }\n  }\n}"
+						},
+						"url": {
+							"raw": "{{Service_Catalog}}/tmf-api/serviceCatalogManagement/v4/listener/serviceCatalogBatchNotification",
+							"host": [
+								"{{Service_Catalog}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceCatalogManagement",
+								"v4",
+								"listener",
+								"serviceCatalogBatchNotification"
+							]
+						},
+						"description": "Example of a client listener for receiving the notification ServiceCatalogBatchNotification"
+					},
+					"response": []
+				},
+				{
+					"name": "Client listener for entity ServiceCatalogDeleteNotification",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2e50093d-f47a-4ef8-bce8-fd636d97bbca",
+								"exec": [
+									"var json = pm.response.json();",
+									"pm.environment.set(\"id\", json.id);",
+									"",
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"eventId\": \"00001\",\n  \"eventTime\": \"2000-01-23T04:56:07.000Z\",\n  \"eventType\": \"serviceCatalogDeleteNotification\",\n  \"event\": {\n    \"serviceCatalog\": {\n      \"name\": \"Catalog Wholesale Business\",\n      \"id\": \"45933f7a-af1a-412c-8f1c-e8315a46bcad\",\n      \"href\": \"https://api-service-catalog-management-v4-0-0.mybluemix.net/tmf-api/serviceCatalogManagement/v4/serviceCatalog/45933f7a-af1a-412c-8f1c-e8315a46bcad\",\n      \"lastUpdate\": \"2019-04-02T21:45:18.602Z\",\n      \"@schemaLocation\": \"https://api-service-catalog-management-v4-0-0.mybluemix.net/docs/#/\",\n      \"@type\": \"ServiceCatalog\",\n      \"@baseType\": \"ServiceCatalog\"\n    }\n  }\n}"
+						},
+						"url": {
+							"raw": "{{Service_Catalog}}/tmf-api/serviceCatalogManagement/v4/listener/serviceCatalogDeleteNotification",
+							"host": [
+								"{{Service_Catalog}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceCatalogManagement",
+								"v4",
+								"listener",
+								"serviceCatalogDeleteNotification"
+							]
+						},
+						"description": "Example of a client listener for receiving the notification ServiceCatalogDeleteNotification"
+					},
+					"response": []
+				}
+			],
+			"description": "Folder for listener"
+		}
+	]
+}

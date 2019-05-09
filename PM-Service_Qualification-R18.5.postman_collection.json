@@ -1,0 +1,680 @@
+{
+	"info": {
+		"_postman_id": "a8ccae9c-c689-45a5-acd2-024c551d4479",
+		"name": "PM-Service_Qualification-R18.5",
+		"description": "## TMF API Reference: TMF645 - Service Qualification\n\n### Release : 18.5 - December 2018\n\nService Qualification API is one of Pre-Ordering Management API Family. Service Qualification API goal is to provide service technical eligibility. \n\n### Resource \n- serviceQualification\n\n### Operations\nService Qualification API performs the following operations on the resource :\n- Retrieve an entity or a collection of entities depending on filter criteria\n- Partial update of an entity (including updating rules)\n- Create an entity (including default values and creation rules)\n- Delete an entity (for administration purposes)\n- Manage notification of events",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "serviceQualification",
+			"item": [
+				{
+					"name": "List or find ServiceQualification objects",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4773d089-1c06-4c88-af5b-d4eac1e3fd7f",
+								"exec": [
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Service_Qualification}}/tmf-api/serviceQualificationManagement/v4/serviceQualification?",
+							"host": [
+								"{{Service_Qualification}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceQualificationManagement",
+								"v4",
+								"serviceQualification"
+							],
+							"query": [
+								{
+									"key": "fields",
+									"value": "{{fields}}",
+									"disabled": true
+								},
+								{
+									"key": "offset",
+									"value": "{{offset}}",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "{{limit}}",
+									"disabled": true
+								}
+							]
+						},
+						"description": "This operation list or find ServiceQualification entities"
+					},
+					"response": []
+				},
+				{
+					"name": "Maximum download/upload speed",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5c0edfec-5c73-449b-8705-0b8e80e20ade",
+								"exec": [
+									"var json = pm.response.json();",
+									"pm.environment.set(\"id\", json.id);",
+									"",
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"description\": \"Maximum download/upload speed for access at an address\",\n    \"externalId\": \"SQ101\",\n    \"expectedQualificationDate\": \"2017-10-25T12:13:16.361Z\",\n    \"provideAlternative\": true,\n    \"provideOnlyAvailable\": false,\n    \"provideUnavailabilityReason\": false,\n    \"serviceQualificationItem\": [\n        {\n            \"id\": \"1\",\n            \"service\": {\n                \"serviceSpecification\": {\n                    \"id\": \"111\",\n                    \"href\": \"https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v4/serviceSpecification/111\", \n                    \"name\": \"CFS_Access\"\n                },\n                \"serviceCharacteristic\": [\n                    {\n                        \"name\": \"downloadSpeed\",\n                        \"value\": {}\n                    }, \n                    {\n                        \"name\": \"uploadSpeed\",\n                        \"value\": {}\n                    }\n                ],\n                \"place\": [\n                    {\n                        \"href\": \"https://mycsp.com:8080/tmf-api/geographicAddressManagement/v4/geographicAddress/25511\",\n                        \"id\": \"25511\",\n                        \"name\": \"160 de Versailles Avenue 75016 Paris France\",\n                        \"role\": \"installationAddress\",\n                        \"@type\": \"geographicAddress\"\n                    }\n                ]\n            }\n        }\n    ],\n    \"relatedParty\": [\n        {\n            \"id\": \"14\", \n            \"href\": \"https://mycsp.com:8080/tmf-api/partyManagement/v4/party/14\", \n            \"role\": \"requester\", \n            \"name\": \"John Doe\",\n            \"@referredType\": \"Individual\"\n        }\n    ]\n}\n"
+						},
+						"url": {
+							"raw": "{{Service_Qualification}}/tmf-api/serviceQualificationManagement/v4/serviceQualification",
+							"host": [
+								"{{Service_Qualification}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceQualificationManagement",
+								"v4",
+								"serviceQualification"
+							]
+						},
+						"description": "This operation creates a ServiceQualification entity."
+					},
+					"response": []
+				},
+				{
+					"name": "Deliver access and IPTV",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5c0edfec-5c73-449b-8705-0b8e80e20ade",
+								"exec": [
+									"var json = pm.response.json();",
+									"pm.environment.set(\"id\", json.id);",
+									"",
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"externalId\": \"SQ102\",\n    \"description\": \"Deliver access and IPTV at a given address\",\n    \"expectedQualificationDate\": \"2017-10-25T12:13:16.361Z\",\n    \"provideAlternative\": true,\n    \"provideOnlyAvailable\": true,\n    \"provideUnavailabilityReason\": false,\n    \"serviceQualificationItem\": [\n        {\n            \"id\": \"1\",\n            \"expectedServiceAvailabilityDate\": \"2017-10-27T12:14:16.361Z\",\n            \"service\": {\n                \"serviceSpecification\": {\n                    \"id\": \"111\",\n                    \"href\": \"https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v4/serviceSpecification/111\", \n                    \"name\": \"CFS_Access\"\n                },\n                \"serviceCharacteristic\": [\n                    {\n                        \"name\": \"downloadSpeed\",\n                        \"value\": {}\n                    }, \n                    {\n                        \"name\": \"uploadSpeed\",\n                        \"value\": {}\n                    }\n                ],\n                \"place\": [\n                    {\n                        \"href\": \"https://mycsp.com:8080/tmf-api/geographicAddressManagement/v4/geographicAddress/25511\",\n                        \"id\": \"25511\",\n                        \"name\": \"160 de Versailles Avenue 75016 Paris France\",\n                        \"role\": \"installationAddress\",\n                        \"@type\": \"geographicAddress\"\n                    }\n                ]\n            }\n        },\n        {\n            \"id\": \"2\",\n            \"expectedServiceAvailabilityDate\": \"2017-10-27T12:14:16.361Z\",\n            \"service\": {\n                \"serviceSpecification\":{\n                    \"id\": \"222\",\n                    \"href\": \"https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v4/serviceSpecification/222\", \n                    \"name\": \"CFS_IPTV\"\n                },\n                \"serviceCharacteristic\": [\n                    {\n                        \"name\": \"4kEnabled\",\n                        \"valueType\": \"boolean\",\n                        \"value\": true\n                    } \n                ]\n            },\n            \"qualificationItemRelationship\": [\n                {\n                    \"id\": \"1\"\n                }\n            ]\n        }\n    ]\n}\n"
+						},
+						"url": {
+							"raw": "{{Service_Qualification}}/tmf-api/serviceQualificationManagement/v4/serviceQualification",
+							"host": [
+								"{{Service_Qualification}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceQualificationManagement",
+								"v4",
+								"serviceQualification"
+							]
+						},
+						"description": "This operation creates a ServiceQualification entity."
+					},
+					"response": []
+				},
+				{
+					"name": "Upgrade the download speed",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5c0edfec-5c73-449b-8705-0b8e80e20ade",
+								"exec": [
+									"var json = pm.response.json();",
+									"pm.environment.set(\"id\", json.id);",
+									"",
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"externalId\": \"SQ104\",\n    \"description\": \"Upgrade the download speed of an existing access\",\n    \"expectedQualificationDate\": \"2017-10-25T12:13:16.361Z\",\n    \"provideAlternative\": false,\n    \"provideOnlyAvailable\": true,\n    \"provideUnavailabilityReason\": false,\n    \"serviceQualificationItem\": [\n        {\n            \"id\": \"1\",\n            \"expectedServiceAvailabilityDate\": \"2017-10-27T12:14:16.361Z\",\n            \"service\": {\n                \"id\": \"741\",\n                \"serviceCharacteristic\": [\n                    {\n                        \"name\": \"downloadSpeed\",\n                        \"valueType\": \"object\",\n                        \"value\":\n                        {\n                            \"@type\": \"Bandwidth\",\n                            \"@schemaLocation\": \"https://mycsp.com:8080/tmf-api/schema/Service/Bandwidth.schema.json\",\n                            \"speed\": \"600Mb/s\"\n                        }\n                    }\n                ]\n            }\n        }\n    ],\n    \"relatedParty\": [\n        {\n            \"id\": \"16\", \n            \"href\": \"https://mycsp.com:8080/tmf-api/partyManagement/v4/party/16\", \n            \"role\": \"requester\", \n            \"name\": \"Adam Smith\",\n            \"@referredType\": \"Individual\"\n        }\n    ]\n}\n"
+						},
+						"url": {
+							"raw": "{{Service_Qualification}}/tmf-api/serviceQualificationManagement/v4/serviceQualification",
+							"host": [
+								"{{Service_Qualification}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceQualificationManagement",
+								"v4",
+								"serviceQualification"
+							]
+						},
+						"description": "This operation creates a ServiceQualification entity."
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieves a ServiceQualification by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "78cb0e30-eb1b-4586-8f60-e8534dc2fd67",
+								"exec": [
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Service_Qualification}}/tmf-api/serviceQualificationManagement/v4/serviceQualification/{{id}}?",
+							"host": [
+								"{{Service_Qualification}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceQualificationManagement",
+								"v4",
+								"serviceQualification",
+								"{{id}}"
+							],
+							"query": [
+								{
+									"key": "fields",
+									"value": "{{fields}}",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						},
+						"description": "This operation retrieves a ServiceQualification entity. Attribute selection is enabled for all first level attributes."
+					},
+					"response": []
+				},
+				{
+					"name": "Updates partially a ServiceQualification",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "80918a47-2d17-4cae-a0fb-b1226709b9c2",
+								"exec": [
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"description\":\"Updated Description\"\n}\n\n\n"
+						},
+						"url": {
+							"raw": "{{Service_Qualification}}/tmf-api/serviceQualificationManagement/v4/serviceQualification/{{id}}",
+							"host": [
+								"{{Service_Qualification}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceQualificationManagement",
+								"v4",
+								"serviceQualification",
+								"{{id}}"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						},
+						"description": "This operation updates partially a ServiceQualification entity."
+					},
+					"response": []
+				},
+				{
+					"name": "Deletes a ServiceQualification",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0ef02d75-6e0f-4789-b62c-352512cb517b",
+								"exec": [
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Service_Qualification}}/tmf-api/serviceQualificationManagement/v4/serviceQualification/{{id}}",
+							"host": [
+								"{{Service_Qualification}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceQualificationManagement",
+								"v4",
+								"serviceQualification",
+								"{{id}}"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						},
+						"description": "This operation deletes a ServiceQualification entity."
+					},
+					"response": []
+				}
+			],
+			"description": "Folder for serviceQualification"
+		},
+		{
+			"name": "hub",
+			"item": [
+				{
+					"name": "Register a listener",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f8c8a404-6a89-4373-9585-bf145e51e4c5",
+								"exec": [
+									"var json = pm.response.json();",
+									"pm.environment.set(\"id\", json.id);",
+									"",
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"callback\": \"callback\",\n    \"query\": \"query\"\n}"
+						},
+						"url": {
+							"raw": "{{Service_Qualification}}/tmf-api/serviceQualificationManagement/v4/hub",
+							"host": [
+								"{{Service_Qualification}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceQualificationManagement",
+								"v4",
+								"hub"
+							]
+						},
+						"description": "Sets the communication endpoint address the service instance must use to deliver information about its health state, execution state, failures and metrics."
+					},
+					"response": []
+				},
+				{
+					"name": "Unregister a listener",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d4122b3b-c702-404d-bc00-ac3246e8b759",
+								"exec": [
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Service_Qualification}}/tmf-api/serviceQualificationManagement/v4/hub/{{id}}",
+							"host": [
+								"{{Service_Qualification}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceQualificationManagement",
+								"v4",
+								"hub",
+								"{{id}}"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						},
+						"description": "Resets the communication endpoint address the service instance must use to deliver information about its health state, execution state, failures and metrics."
+					},
+					"response": []
+				}
+			],
+			"description": "Folder for hub"
+		},
+		{
+			"name": "listener",
+			"item": [
+				{
+					"name": "Client listener for entity ServiceQualificationCreateNotification",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5af51247-8b92-484d-bd42-60b546b16c17",
+								"exec": [
+									"var json = pm.response.json();",
+									"pm.environment.set(\"id\", json.id);",
+									"",
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"eventId\": \"00001\",\n  \"eventTime\": \"2000-01-23T04:56:07.000Z\",\n  \"eventType\": \"ServiceQualificationCreateNotification\",\n  \"event\": {\n      \"description\": \"Maximum download/upload speed for access at an address\",\n      \"externalId\": \"SQ101\",\n      \"expectedQualificationDate\": \"2017-10-25T12:13:16.361Z\",\n      \"provideAlternative\": true,\n      \"provideOnlyAvailable\": false,\n      \"provideUnavailabilityReason\": false,\n      \"serviceQualificationItem\": [\n        {\n          \"id\": \"1\",\n          \"service\": {\n            \"serviceSpecification\": {\n              \"id\": \"111\",\n              \"href\": \"https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v4/serviceSpecification/111\",\n              \"name\": \"CFS_Access\"\n            },\n            \"serviceCharacteristic\": [\n              {\n                \"name\": \"downloadSpeed\",\n                \"value\": {}\n              },\n              {\n                \"name\": \"uploadSpeed\",\n                \"value\": {}\n              }\n            ],\n            \"place\": [\n              {\n                \"href\": \"https://mycsp.com:8080/tmf-api/geographicAddressManagement/v4/geographicAddress/25511\",\n                \"id\": \"25511\",\n                \"name\": \"160 de Versailles Avenue 75016 Paris France\",\n                \"role\": \"installationAddress\",\n                \"@type\": \"geographicAddress\"\n              }\n            ]\n          }\n        }\n      ],\n      \"relatedParty\": [\n        {\n          \"id\": \"14\",\n          \"href\": \"https://mycsp.com:8080/tmf-api/partyManagement/v4/party/14\",\n          \"role\": \"requester\",\n          \"name\": \"John Doe\",\n          \"@referredType\": \"Individual\"\n        }\n      ],\n      \"id\": \"1f42f12f-a9b8-4bad-bc72-9064575f83ea\",\n      \"href\": \"https://api-service-qualification-management-v4-0-0.mybluemix.net/tmf-api/serviceQualificationManagement/v4/serviceQualification/1f42f12f-a9b8-4bad-bc72-9064575f83ea\",\n      \"@schemaLocation\": \"https://api-service-qualification-management-v4-0-0.mybluemix.net/docs/#/\",\n      \"@type\": \"ServiceQualification\",\n      \"@baseType\": \"ServiceQualification\"\n    \n  }\n}"
+						},
+						"url": {
+							"raw": "{{Service_Qualification}}/tmf-api/serviceQualificationManagement/v4/listener/serviceQualificationCreateNotification",
+							"host": [
+								"{{Service_Qualification}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceQualificationManagement",
+								"v4",
+								"listener",
+								"serviceQualificationCreateNotification"
+							]
+						},
+						"description": "Example of a client listener for receiving the notification ServiceQualificationCreateNotification"
+					},
+					"response": []
+				},
+				{
+					"name": "Client listener for entity ServiceQualificationChangeNotification",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "83be1fbc-96ec-49d1-8759-6c455dd9c286",
+								"exec": [
+									"var json = pm.response.json();",
+									"pm.environment.set(\"id\", json.id);",
+									"",
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"eventId\": \"00001\",\n  \"eventTime\": \"2000-01-23T04:56:07.000Z\",\n  \"eventType\": \"ServiceQualificationChangeNotification\",\n  \"event\": {\n      \"description\": \"Maximum download/upload speed for access at an address\",\n      \"externalId\": \"SQ101\",\n      \"expectedQualificationDate\": \"2017-10-25T12:13:16.361Z\",\n      \"provideAlternative\": true,\n      \"provideOnlyAvailable\": false,\n      \"provideUnavailabilityReason\": false,\n      \"serviceQualificationItem\": [\n        {\n          \"id\": \"1\",\n          \"service\": {\n            \"serviceSpecification\": {\n              \"id\": \"111\",\n              \"href\": \"https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v4/serviceSpecification/111\",\n              \"name\": \"CFS_Access\"\n            },\n            \"serviceCharacteristic\": [\n              {\n                \"name\": \"downloadSpeed\",\n                \"value\": {}\n              },\n              {\n                \"name\": \"uploadSpeed\",\n                \"value\": {}\n              }\n            ],\n            \"place\": [\n              {\n                \"href\": \"https://mycsp.com:8080/tmf-api/geographicAddressManagement/v4/geographicAddress/25511\",\n                \"id\": \"25511\",\n                \"name\": \"160 de Versailles Avenue 75016 Paris France\",\n                \"role\": \"installationAddress\",\n                \"@type\": \"geographicAddress\"\n              }\n            ]\n          }\n        }\n      ],\n      \"relatedParty\": [\n        {\n          \"id\": \"14\",\n          \"href\": \"https://mycsp.com:8080/tmf-api/partyManagement/v4/party/14\",\n          \"role\": \"requester\",\n          \"name\": \"John Doe\",\n          \"@referredType\": \"Individual\"\n        }\n      ],\n      \"id\": \"1f42f12f-a9b8-4bad-bc72-9064575f83ea\",\n      \"href\": \"https://api-service-qualification-management-v4-0-0.mybluemix.net/tmf-api/serviceQualificationManagement/v4/serviceQualification/1f42f12f-a9b8-4bad-bc72-9064575f83ea\",\n      \"@schemaLocation\": \"https://api-service-qualification-management-v4-0-0.mybluemix.net/docs/#/\",\n      \"@type\": \"ServiceQualification\",\n      \"@baseType\": \"ServiceQualification\"\n    \n  }\n}"
+						},
+						"url": {
+							"raw": "{{Service_Qualification}}/tmf-api/serviceQualificationManagement/v4/listener/serviceQualificationChangeNotification",
+							"host": [
+								"{{Service_Qualification}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceQualificationManagement",
+								"v4",
+								"listener",
+								"serviceQualificationChangeNotification"
+							]
+						},
+						"description": "Example of a client listener for receiving the notification ServiceQualificationChangeNotification"
+					},
+					"response": []
+				},
+				{
+					"name": "Client listener for entity ServiceQualificationDeleteNotification",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e488dca2-e728-4f8e-8968-d179d419b307",
+								"exec": [
+									"var json = pm.response.json();",
+									"pm.environment.set(\"id\", json.id);",
+									"",
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"eventId\": \"00001\",\n  \"eventTime\": \"2000-01-23T04:56:07.000Z\",\n  \"eventType\": \"ServiceQualificationDeleteNotification\",\n  \"event\": {\n      \"description\": \"Maximum download/upload speed for access at an address\",\n      \"externalId\": \"SQ101\",\n      \"expectedQualificationDate\": \"2017-10-25T12:13:16.361Z\",\n      \"provideAlternative\": true,\n      \"provideOnlyAvailable\": false,\n      \"provideUnavailabilityReason\": false,\n      \"serviceQualificationItem\": [\n        {\n          \"id\": \"1\",\n          \"service\": {\n            \"serviceSpecification\": {\n              \"id\": \"111\",\n              \"href\": \"https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v4/serviceSpecification/111\",\n              \"name\": \"CFS_Access\"\n            },\n            \"serviceCharacteristic\": [\n              {\n                \"name\": \"downloadSpeed\",\n                \"value\": {}\n              },\n              {\n                \"name\": \"uploadSpeed\",\n                \"value\": {}\n              }\n            ],\n            \"place\": [\n              {\n                \"href\": \"https://mycsp.com:8080/tmf-api/geographicAddressManagement/v4/geographicAddress/25511\",\n                \"id\": \"25511\",\n                \"name\": \"160 de Versailles Avenue 75016 Paris France\",\n                \"role\": \"installationAddress\",\n                \"@type\": \"geographicAddress\"\n              }\n            ]\n          }\n        }\n      ],\n      \"relatedParty\": [\n        {\n          \"id\": \"14\",\n          \"href\": \"https://mycsp.com:8080/tmf-api/partyManagement/v4/party/14\",\n          \"role\": \"requester\",\n          \"name\": \"John Doe\",\n          \"@referredType\": \"Individual\"\n        }\n      ],\n      \"id\": \"1f42f12f-a9b8-4bad-bc72-9064575f83ea\",\n      \"href\": \"https://api-service-qualification-management-v4-0-0.mybluemix.net/tmf-api/serviceQualificationManagement/v4/serviceQualification/1f42f12f-a9b8-4bad-bc72-9064575f83ea\",\n      \"@schemaLocation\": \"https://api-service-qualification-management-v4-0-0.mybluemix.net/docs/#/\",\n      \"@type\": \"ServiceQualification\",\n      \"@baseType\": \"ServiceQualification\"\n    \n  }\n}"
+						},
+						"url": {
+							"raw": "{{Service_Qualification}}/tmf-api/serviceQualificationManagement/v4/listener/serviceQualificationDeleteNotification",
+							"host": [
+								"{{Service_Qualification}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceQualificationManagement",
+								"v4",
+								"listener",
+								"serviceQualificationDeleteNotification"
+							]
+						},
+						"description": "Example of a client listener for receiving the notification ServiceQualificationDeleteNotification"
+					},
+					"response": []
+				}
+			],
+			"description": "Folder for listener"
+		}
+	]
+}

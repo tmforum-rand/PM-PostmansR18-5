@@ -1,0 +1,568 @@
+{
+	"info": {
+		"_postman_id": "7ed2afbd-7eb9-400b-84b5-2524a8aac999",
+		"name": "PM-Usage_Consumption-R18.5",
+		"description": "## TMF API Reference: TMF677 - Usage Consumption\n\n### Release: 18.5 - December 2018\n\nThis API covers the consumption follow up function providing ongoing information about usages related to any subscribed communication products (voice, data, TV,…) without having to wait the invoice production. These information may concern usages charged on a bucket supervised or not and so the remaining credits on the bucket. It allows customers or users to be informed on usages done and remaining credits on the buckets that they consume under their purchased offers and options.\n\nThe usage consumption API allow to view at a given point the balance and the consumption counters of the various buckets (SMS, Voice, Data for example) that one or more user(s) consume with each of his devices, according to the purchased offers and options.\n\n### Resources \n- **usageConsumptionReport** : an usage consumption report retrieves the data related to these balances and various consumption counters and calculated at the time of the request by the server.\n- **usageConsumptionReportRequest** : used to manage the calculation request of an usage consumption report.\n\n### Operations\nThe use of the both resources described in this document is conditioned by the capability of the server:\n- If the server could perform the calculation and so give the usage consumption report in synchronous mode according to the criteria given by the API requester, a GET operation with filter criteria on usageConsumptionReport resource could be used. We could accept to use a GET operation in this context because the server calculates the data given in the usage consumption report without necessarily store it.\n- We must also anticipate the use case where the server could only give an asynchronous response to the calculation of an usage consumption report requested by the API requester. In this case, a POST operation on usageConsumptionReportRequest could be sent by the API Requester asking the server that a usage consumption report calculation has to be performed. Then, the API requester could follow the process with a GET operation on this same resource retrieving the status of the request. The server could also use the notification pattern to inform the API requester that the usage consumption report is available\n\nCopyright © TM Forum 2018. All Rights Reserved.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "usageConsumptionReport",
+			"item": [
+				{
+					"name": "List or find UsageConsumptionReport objects",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "842dc128-4276-4bf1-8257-5b949ce1de4c",
+								"exec": [
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});",
+									"",
+									"var json = pm.response.json();",
+									"",
+									"if (Array.isArray(json) && json.length > 0){",
+									"    ",
+									"    pm.environment.set(\"id\", json[0].id);",
+									"}",
+									"else {",
+									"    if (json.id !== undefined){",
+									"        pm.environment.set(\"id\", json.id);",
+									"    }",
+									"    else {",
+									"        pm.environment.set(\"id\", \"\");",
+									"    }",
+									"    ",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Usage_Consumption}}/tmf-api/usageConsumption/v4/usageConsumptionReport?",
+							"host": [
+								"{{Usage_Consumption}}"
+							],
+							"path": [
+								"tmf-api",
+								"usageConsumption",
+								"v4",
+								"usageConsumptionReport"
+							],
+							"query": [
+								{
+									"key": "fields",
+									"value": "{{fields}}",
+									"disabled": true
+								},
+								{
+									"key": "offset",
+									"value": "{{offset}}",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "{{limit}}",
+									"disabled": true
+								}
+							]
+						},
+						"description": "This operation list or find UsageConsumptionReport entities"
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieves a UsageConsumptionReport by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a0ed5db8-0f49-4f75-a2ce-aefca99e19d7",
+								"exec": [
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Usage_Consumption}}/tmf-api/usageConsumption/v4/usageConsumptionReport/{{id}}?",
+							"host": [
+								"{{Usage_Consumption}}"
+							],
+							"path": [
+								"tmf-api",
+								"usageConsumption",
+								"v4",
+								"usageConsumptionReport",
+								"{{id}}"
+							],
+							"query": [
+								{
+									"key": "fields",
+									"value": "{{fields}}",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						},
+						"description": "This operation retrieves a UsageConsumptionReport entity. Attribute selection is enabled for all first level attributes."
+					},
+					"response": []
+				}
+			],
+			"description": "Folder for usageConsumptionReport"
+		},
+		{
+			"name": "usageConsumptionReportRequest",
+			"item": [
+				{
+					"name": "List or find UsageConsumptionReportRequest objects",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d6fd5f7a-682b-4861-abea-886946908dfc",
+								"exec": [
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Usage_Consumption}}/tmf-api/usageConsumption/v4/usageConsumptionReportRequest?",
+							"host": [
+								"{{Usage_Consumption}}"
+							],
+							"path": [
+								"tmf-api",
+								"usageConsumption",
+								"v4",
+								"usageConsumptionReportRequest"
+							],
+							"query": [
+								{
+									"key": "fields",
+									"value": "{{fields}}",
+									"disabled": true
+								},
+								{
+									"key": "offset",
+									"value": "{{offset}}",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "{{limit}}",
+									"disabled": true
+								}
+							]
+						},
+						"description": "This operation list or find UsageConsumptionReportRequest entities"
+					},
+					"response": []
+				},
+				{
+					"name": "Creates a UsageConsumptionReportRequest",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "17c4ff8c-e67c-41db-98fb-46bd83809c70",
+								"exec": [
+									"var json = pm.response.json();",
+									"pm.environment.set(\"id\", json.id);",
+									"",
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"product\": {\n    \t\"id\": \"1\",\n    \t\"href\": \"https://mycsp.com:8080/tmf-api/productCatalogManagement/v4/product/1\",\n\t   \"publicIdentifier\": \"33601010101\"\n\t}\n}\n"
+						},
+						"url": {
+							"raw": "{{Usage_Consumption}}/tmf-api/usageConsumption/v4/usageConsumptionReportRequest",
+							"host": [
+								"{{Usage_Consumption}}"
+							],
+							"path": [
+								"tmf-api",
+								"usageConsumption",
+								"v4",
+								"usageConsumptionReportRequest"
+							]
+						},
+						"description": "This operation creates a UsageConsumptionReportRequest entity."
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieves a UsageConsumptionReportRequest by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "179d5c70-b851-43a6-8c4f-7a3a42716d85",
+								"exec": [
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Usage_Consumption}}/tmf-api/usageConsumption/v4/usageConsumptionReportRequest/{{id}}?",
+							"host": [
+								"{{Usage_Consumption}}"
+							],
+							"path": [
+								"tmf-api",
+								"usageConsumption",
+								"v4",
+								"usageConsumptionReportRequest",
+								"{{id}}"
+							],
+							"query": [
+								{
+									"key": "fields",
+									"value": "{{fields}}",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						},
+						"description": "This operation retrieves a UsageConsumptionReportRequest entity. Attribute selection is enabled for all first level attributes."
+					},
+					"response": []
+				},
+				{
+					"name": "Deletes a UsageConsumptionReportRequest",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e810d801-770c-4ade-b2f6-ca96f2b8fe61",
+								"exec": [
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Usage_Consumption}}/tmf-api/usageConsumption/v4/usageConsumptionReportRequest/{{id}}",
+							"host": [
+								"{{Usage_Consumption}}"
+							],
+							"path": [
+								"tmf-api",
+								"usageConsumption",
+								"v4",
+								"usageConsumptionReportRequest",
+								"{{id}}"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						},
+						"description": "This operation deletes a UsageConsumptionReportRequest entity."
+					},
+					"response": []
+				}
+			],
+			"description": "Folder for usageConsumptionReportRequest"
+		},
+		{
+			"name": "hub",
+			"item": [
+				{
+					"name": "Register a listener",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3217a410-3ac3-42bc-861c-29e3c719a139",
+								"exec": [
+									"var json = pm.response.json();",
+									"pm.environment.set(\"id\", json.id);",
+									"",
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"callback\": \"callback\",\n    \"query\": \"query\"\n}"
+						},
+						"url": {
+							"raw": "{{Usage_Consumption}}/tmf-api/usageConsumption/v4/hub",
+							"host": [
+								"{{Usage_Consumption}}"
+							],
+							"path": [
+								"tmf-api",
+								"usageConsumption",
+								"v4",
+								"hub"
+							]
+						},
+						"description": "Sets the communication endpoint address the service instance must use to deliver information about its health state, execution state, failures and metrics."
+					},
+					"response": []
+				},
+				{
+					"name": "Unregister a listener",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4fafa017-d795-4e39-8aaf-f537955a2d2b",
+								"exec": [
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Usage_Consumption}}/tmf-api/usageConsumption/v4/hub/{{id}}",
+							"host": [
+								"{{Usage_Consumption}}"
+							],
+							"path": [
+								"tmf-api",
+								"usageConsumption",
+								"v4",
+								"hub",
+								"{{id}}"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						},
+						"description": "Resets the communication endpoint address the service instance must use to deliver information about its health state, execution state, failures and metrics."
+					},
+					"response": []
+				}
+			],
+			"description": "Folder for hub"
+		},
+		{
+			"name": "listener",
+			"item": [
+				{
+					"name": "Client listener for entity UsageConsumptionReportRequestStateChangeNotification",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b2c2e0d2-247f-4e13-9f7e-9df36c3b0920",
+								"exec": [
+									"var json = pm.response.json();",
+									"pm.environment.set(\"id\", json.id);",
+									"",
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"eventId\": \"00001\",\n  \"eventTime\": \"2000-01-23T04:56:07.000Z\",\n  \"eventType\": \"usageConsumptionReportRequestStateChangeNotification\",\n  \"event\": {\n    \"usageConsumptionReportRequest\": {\n      \"product\": {\n        \"id\": \"1\",\n        \"href\": \"https://mycsp.com:8080/tmf-api/productCatalogManagement/v4/product/1\",\n        \"publicIdentifier\": \"33601010101\"\n      },\n      \"id\": \"bf43e2b3-0462-4329-a190-cb5437e4ab1a\",\n      \"href\": \"https://api-usageconsumption-v4-0-0.mybluemix.net/tmf-api/usageConsumption/v4/usageConsumptionReportRequest/bf43e2b3-0462-4329-a190-cb5437e4ab1a\",\n      \"lastUpdate\": \"2019-04-02T22:17:15.440Z\",\n      \"@schemaLocation\": \"https://api-usageconsumption-v4-0-0.mybluemix.net/docs/#/\",\n      \"@type\": \"UsageConsumptionReportRequest\",\n      \"@baseType\": \"UsageConsumptionReportRequest\"\n    }\n  }\n}"
+						},
+						"url": {
+							"raw": "{{Usage_Consumption}}/tmf-api/usageConsumption/v4/listener/usageConsumptionReportRequestStateChangeNotification",
+							"host": [
+								"{{Usage_Consumption}}"
+							],
+							"path": [
+								"tmf-api",
+								"usageConsumption",
+								"v4",
+								"listener",
+								"usageConsumptionReportRequestStateChangeNotification"
+							]
+						},
+						"description": "Example of a client listener for receiving the notification UsageConsumptionReportRequestStateChangeNotification"
+					},
+					"response": []
+				}
+			],
+			"description": "Folder for listener"
+		}
+	]
+}

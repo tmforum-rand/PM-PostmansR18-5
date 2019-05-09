@@ -1,0 +1,618 @@
+{
+	"info": {
+		"_postman_id": "2a406d30-e1c6-428f-afa2-edbc121d204f",
+		"name": "PM-Service_Ordering-R18.5",
+		"description": "## TMF API Reference : TMF 641 - Service Ordering Management\n\n## Release : 18.5 - Dec 2018\n\nThe Service Order API provides a standardized mechanism for managing Service Order, a type of order which can be used to place an order between a customer and a service provider or between a service provider and a partner and vice versa.\n\n### Service Order resource\nA service order will describe a list of service order items.  A service order item references an action on an existing  or  future  service.  By  service  we  designed  Customer Facing  Service  (CFS)  as  well  as  Resource Facing Service (RFS).\nFrom a component perspective, a service order should be available\n- from a Service Orchestration Component (and it could mix CFS and RFS)\n- from an Infrastructure Control & Management component (and it would have only RFS)\n\n### Service Order API performs the following operations on service order :\n- Retrieval of a service order or a collection of service orders depending on filter criteria\n- Partial update of a service order (including updating rules)\n- Creation of a service order (including default values and creation rules)\n- Deletion of service order (for administration purposes)\n- Notification of events on Service order\n\nCopyright © TM Forum 2018. All Rights Reserved",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "serviceOrder",
+			"item": [
+				{
+					"name": "List or find ServiceOrder objects",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "edaf30f5-478c-4965-b193-568a892389d0",
+								"exec": [
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Service_Ordering}}/tmf-api/serviceOrdering/v4/serviceOrder",
+							"host": [
+								"{{Service_Ordering}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceOrdering",
+								"v4",
+								"serviceOrder"
+							],
+							"query": [
+								{
+									"key": "fields",
+									"value": "{{fields}}",
+									"disabled": true
+								},
+								{
+									"key": "offset",
+									"value": "{{offset}}",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "{{limit}}",
+									"disabled": true
+								}
+							]
+						},
+						"description": "This operation list or find ServiceOrder entities"
+					},
+					"response": []
+				},
+				{
+					"name": "Creates a ServiceOrder",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0c9a2cd4-986a-49d7-86d4-23e06c8b44bd",
+								"exec": [
+									"var json = pm.response.json();",
+									"pm.environment.set(\"id\", json.id);",
+									"",
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"externalId\": \"OrangeBSS748\",\n    \"priority\": \"1\",\n    \"description\": \"Service order description\",\n    \"category\": \"TMF resource illustration\",\n    \"requestedStartDate\": \"2018-01-15T09:37:40.508Z\",\n    \"requestedCompletionDate\": \"2018-01-15T09:37:40.508Z\",\n    \"@type\": \"ServiceOrder\",\n    \"orderItem\": [\n        {\n            \"id\": \"1\",\n            \"action\": \"add\",\n            \"@type\": \"ServiceOrder\",\n            \"service\": {\n                \"serviceSpecification\": {\n                    \"id\": \"12\",\n                    \"href\": \"http://...:serviceSpecification/12\",\n                    \"name\": \"vCPE\",\n                    \"version\": \"1\",\n                    \"@type\": \"vCPE\",\n                    \"@schemaLocation\": \"http...\"\n                }\n            }\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{Service_Ordering}}/tmf-api/serviceOrdering/v4/serviceOrder",
+							"host": [
+								"{{Service_Ordering}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceOrdering",
+								"v4",
+								"serviceOrder"
+							]
+						},
+						"description": "This operation creates a ServiceOrder entity."
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieves a ServiceOrder by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1a4709d4-ee1c-4d29-8661-56b65b76cf52",
+								"exec": [
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Service_Ordering}}/tmf-api/serviceOrdering/v4/serviceOrder/{{id}}?",
+							"host": [
+								"{{Service_Ordering}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceOrdering",
+								"v4",
+								"serviceOrder",
+								"{{id}}"
+							],
+							"query": [
+								{
+									"key": "fields",
+									"value": "{{fields}}",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						},
+						"description": "This operation retrieves a ServiceOrder entity. Attribute selection is enabled for all first level attributes."
+					},
+					"response": []
+				},
+				{
+					"name": "Updates partially a ServiceOrder",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "76b0e6be-e439-4e37-861f-9bb26240d330",
+								"exec": [
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"description\": \"Service order new description\"\n    \n}"
+						},
+						"url": {
+							"raw": "{{Service_Ordering}}/tmf-api/serviceOrdering/v4/serviceOrder/{{id}}",
+							"host": [
+								"{{Service_Ordering}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceOrdering",
+								"v4",
+								"serviceOrder",
+								"{{id}}"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						},
+						"description": "This operation updates partially a ServiceOrder entity."
+					},
+					"response": []
+				},
+				{
+					"name": "Deletes a ServiceOrder",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d314af55-b390-4f92-8e13-d1a08ccf336a",
+								"exec": [
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Service_Ordering}}/tmf-api/serviceOrdering/v4/serviceOrder/{{id}}",
+							"host": [
+								"{{Service_Ordering}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceOrdering",
+								"v4",
+								"serviceOrder",
+								"{{id}}"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						},
+						"description": "This operation deletes a ServiceOrder entity."
+					},
+					"response": []
+				}
+			],
+			"description": "Folder for serviceOrder"
+		},
+		{
+			"name": "hub",
+			"item": [
+				{
+					"name": "Register a listener",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "31c14bab-37c4-44c9-b360-5bff19850b70",
+								"exec": [
+									"var json = pm.response.json();",
+									"pm.environment.set(\"id\", json.id);",
+									"",
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"callback\": \"callback\",\n    \"query\": \"query\"\n}"
+						},
+						"url": {
+							"raw": "{{Service_Ordering}}/tmf-api/serviceOrdering/v4/hub",
+							"host": [
+								"{{Service_Ordering}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceOrdering",
+								"v4",
+								"hub"
+							]
+						},
+						"description": "Sets the communication endpoint address the service instance must use to deliver information about its health state, execution state, failures and metrics."
+					},
+					"response": []
+				},
+				{
+					"name": "Unregister a listener",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9fe71658-ffc2-44f6-8e2c-e58a3126a65a",
+								"exec": [
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Service_Ordering}}/tmf-api/serviceOrdering/v4/hub/{{id}}",
+							"host": [
+								"{{Service_Ordering}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceOrdering",
+								"v4",
+								"hub",
+								"{{id}}"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						},
+						"description": "Resets the communication endpoint address the service instance must use to deliver information about its health state, execution state, failures and metrics."
+					},
+					"response": []
+				}
+			],
+			"description": "Folder for hub"
+		},
+		{
+			"name": "listener",
+			"item": [
+				{
+					"name": "Client listener for entity ServiceOrderCreateNotification",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ebaaf0bb-8f98-4b17-a979-4b0fcf507db1",
+								"exec": [
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"eventId\": \"00001\",\n  \"eventTime\": \"2000-01-23T04:56:07.000Z\",\n  \"eventType\": \"serviceOrderCreateNotification\",\n  \"event\": {\n      \"serviceOrder\": {\n        \"externalId\": \"OrangeBSS748\",\n        \"priority\": \"1\",\n        \"description\": \"Service order description\",\n        \"category\": \"TMF resource illustration\",\n        \"requestedStartDate\": \"2018-01-15T09:37:40.508Z\",\n        \"requestedCompletionDate\": \"2018-01-15T09:37:40.508Z\",\n        \"@type\": \"ServiceOrder\",\n        \"orderItem\": [\n            {\n                \"id\": \"1\",\n                \"action\": \"add\",\n                \"@type\": \"ServiceOrder\",\n                \"service\": {\n                    \"serviceSpecification\": {\n                        \"id\": \"12\",\n                        \"href\": \"http://...:serviceSpecification/12\",\n                        \"name\": \"vCPE\",\n                        \"version\": \"1\",\n                        \"@type\": \"vCPE\",\n                        \"@schemaLocation\": \"http...\"\n                    }\n                }\n            }\n        ],\n        \"id\": \"fec31aa0-a145-498a-8d1e-52971455e454\",\n        \"href\": \"https://api-serviceordering-v4-0-0.mybluemix.net/tmf-api/serviceOrdering/v4/serviceOrder/fec31aa0-a145-498a-8d1e-52971455e454\",\n        \"@schemaLocation\": \"https://api-serviceordering-v4-0-0.mybluemix.net/docs/#/\",\n        \"@baseType\": \"ServiceOrder\"\n    }\n  }\n}"
+						},
+						"url": {
+							"raw": "{{Service_Ordering}}/tmf-api/serviceOrdering/v4/listener/serviceOrderCreateNotification",
+							"host": [
+								"{{Service_Ordering}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceOrdering",
+								"v4",
+								"listener",
+								"serviceOrderCreateNotification"
+							]
+						},
+						"description": "Example of a client listener for receiving the notification ServiceOrderCreateNotification"
+					},
+					"response": []
+				},
+				{
+					"name": "Client listener for entity ServiceOrderAttributeValueChangeNotification",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f974df89-86c1-4c8e-a6f1-0140669f00e4",
+								"exec": [
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"eventId\": \"00001\",\n  \"eventTime\": \"2000-01-23T04:56:07.000Z\",\n  \"eventType\": \"serviceOrderAttributeValueChangeNotification\",\n  \"event\": {\n    \"serviceOrder\": {\n        \"externalId\": \"OrangeBSS748\",\n        \"priority\": \"1\",\n        \"description\": \"Service order description\",\n        \"category\": \"TMF resource illustration\",\n        \"requestedStartDate\": \"2018-01-15T09:37:40.508Z\",\n        \"requestedCompletionDate\": \"2018-01-15T09:37:40.508Z\",\n        \"@type\": \"ServiceOrder\",\n        \"orderItem\": [\n            {\n                \"id\": \"1\",\n                \"action\": \"add\",\n                \"@type\": \"ServiceOrder\",\n                \"service\": {\n                    \"serviceSpecification\": {\n                        \"id\": \"12\",\n                        \"href\": \"http://...:serviceSpecification/12\",\n                        \"name\": \"vCPE\",\n                        \"version\": \"1\",\n                        \"@type\": \"vCPE\",\n                        \"@schemaLocation\": \"http...\"\n                    }\n                }\n            }\n        ],\n        \"id\": \"fec31aa0-a145-498a-8d1e-52971455e454\",\n        \"href\": \"https://api-serviceordering-v4-0-0.mybluemix.net/tmf-api/serviceOrdering/v4/serviceOrder/fec31aa0-a145-498a-8d1e-52971455e454\",\n        \"@schemaLocation\": \"https://api-serviceordering-v4-0-0.mybluemix.net/docs/#/\",\n        \"@baseType\": \"ServiceOrder\"\n    }\n  }\n}"
+						},
+						"url": {
+							"raw": "{{Service_Ordering}}/tmf-api/serviceOrdering/v4/listener/serviceOrderAttributeValueChangeNotification",
+							"host": [
+								"{{Service_Ordering}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceOrdering",
+								"v4",
+								"listener",
+								"serviceOrderAttributeValueChangeNotification"
+							]
+						},
+						"description": "Example of a client listener for receiving the notification ServiceOrderAttributeValueChangeNotification"
+					},
+					"response": []
+				},
+				{
+					"name": "Client listener for entity ServiceOrderStateChangeNotification",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6b3a3281-706a-485d-ac5a-45563a533c3c",
+								"exec": [
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"eventId\": \"00001\",\n  \"eventTime\": \"2000-01-23T04:56:07.000Z\",\n  \"eventType\": \"serviceOrderStateChangeNotification\",\n  \"event\": {\n    \"serviceOrder\": {\n        \"externalId\": \"OrangeBSS748\",\n        \"priority\": \"1\",\n        \"description\": \"Service order description\",\n        \"category\": \"TMF resource illustration\",\n        \"requestedStartDate\": \"2018-01-15T09:37:40.508Z\",\n        \"requestedCompletionDate\": \"2018-01-15T09:37:40.508Z\",\n        \"@type\": \"ServiceOrder\",\n        \"orderItem\": [\n            {\n                \"id\": \"1\",\n                \"action\": \"add\",\n                \"@type\": \"ServiceOrder\",\n                \"service\": {\n                    \"serviceSpecification\": {\n                        \"id\": \"12\",\n                        \"href\": \"http://...:serviceSpecification/12\",\n                        \"name\": \"vCPE\",\n                        \"version\": \"1\",\n                        \"@type\": \"vCPE\",\n                        \"@schemaLocation\": \"http...\"\n                    }\n                }\n            }\n        ],\n        \"id\": \"fec31aa0-a145-498a-8d1e-52971455e454\",\n        \"href\": \"https://api-serviceordering-v4-0-0.mybluemix.net/tmf-api/serviceOrdering/v4/serviceOrder/fec31aa0-a145-498a-8d1e-52971455e454\",\n        \"@schemaLocation\": \"https://api-serviceordering-v4-0-0.mybluemix.net/docs/#/\",\n        \"@baseType\": \"ServiceOrder\"\n    }\n  }\n}"
+						},
+						"url": {
+							"raw": "{{Service_Ordering}}/tmf-api/serviceOrdering/v4/listener/serviceOrderStateChangeNotification",
+							"host": [
+								"{{Service_Ordering}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceOrdering",
+								"v4",
+								"listener",
+								"serviceOrderStateChangeNotification"
+							]
+						},
+						"description": "Example of a client listener for receiving the notification ServiceOrderStateChangeNotification"
+					},
+					"response": []
+				},
+				{
+					"name": "Client listener for entity ServiceOrderDeleteNotification",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4b0f6bcb-284c-4911-b92d-9c0ef8d6f593",
+								"exec": [
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"eventId\": \"00001\",\n  \"eventTime\": \"2000-01-23T04:56:07.000Z\",\n  \"eventType\": \"serviceOrderDeleteNotification\",\n  \"event\": {\n    \"serviceOrder\": {\n        \"externalId\": \"OrangeBSS748\",\n        \"priority\": \"1\",\n        \"description\": \"Service order description\",\n        \"category\": \"TMF resource illustration\",\n        \"requestedStartDate\": \"2018-01-15T09:37:40.508Z\",\n        \"requestedCompletionDate\": \"2018-01-15T09:37:40.508Z\",\n        \"@type\": \"ServiceOrder\",\n        \"orderItem\": [\n            {\n                \"id\": \"1\",\n                \"action\": \"add\",\n                \"@type\": \"ServiceOrder\",\n                \"service\": {\n                    \"serviceSpecification\": {\n                        \"id\": \"12\",\n                        \"href\": \"http://...:serviceSpecification/12\",\n                        \"name\": \"vCPE\",\n                        \"version\": \"1\",\n                        \"@type\": \"vCPE\",\n                        \"@schemaLocation\": \"http...\"\n                    }\n                }\n            }\n        ],\n        \"id\": \"fec31aa0-a145-498a-8d1e-52971455e454\",\n        \"href\": \"https://api-serviceordering-v4-0-0.mybluemix.net/tmf-api/serviceOrdering/v4/serviceOrder/fec31aa0-a145-498a-8d1e-52971455e454\",\n        \"@schemaLocation\": \"https://api-serviceordering-v4-0-0.mybluemix.net/docs/#/\",\n        \"@baseType\": \"ServiceOrder\"\n    }\n  }\n}"
+						},
+						"url": {
+							"raw": "{{Service_Ordering}}/tmf-api/serviceOrdering/v4/listener/serviceOrderDeleteNotification",
+							"host": [
+								"{{Service_Ordering}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceOrdering",
+								"v4",
+								"listener",
+								"serviceOrderDeleteNotification"
+							]
+						},
+						"description": "Example of a client listener for receiving the notification ServiceOrderDeleteNotification"
+					},
+					"response": []
+				}
+			],
+			"description": "Folder for listener"
+		}
+	]
+}

@@ -1,0 +1,1028 @@
+{
+	"info": {
+		"_postman_id": "724986b5-fc6b-4466-8412-2c8b6fcb5be7",
+		"name": "PM-Service_Test-R18.5",
+		"description": "## TMF API Reference: TMF656 - Service Test Management\n\n### Release : 18.5 - December 2018\n\nService Test Management API goal is to provide the ability to manage tests of provisioned Services. \n\n### Resource \n- ServiceTest \n- ServiceTestSpecification\n\n### Operations\nService Test Management API performs the following operations on the resources :\n- Retrieve an entity or a collection of entities depending on filter criteria\n- Partial update of an entity (including updating rules)\n- Create an entity (including default values and creation rules)\n- Delete an entity (for administration purposes)\n- Manage notification of events",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "serviceTest",
+			"item": [
+				{
+					"name": "List or find ServiceTest objects",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0db2ed6b-b20b-4723-b288-611847b54a04",
+								"exec": [
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Service_Test}}/tmf-api/serviceTestManagement/v4/serviceTest?",
+							"host": [
+								"{{Service_Test}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceTestManagement",
+								"v4",
+								"serviceTest"
+							],
+							"query": [
+								{
+									"key": "fields",
+									"value": "{{fields}}",
+									"disabled": true
+								},
+								{
+									"key": "offset",
+									"value": "{{offset}}",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "{{limit}}",
+									"disabled": true
+								}
+							]
+						},
+						"description": "This operation list or find ServiceTest entities"
+					},
+					"response": []
+				},
+				{
+					"name": "Creates a ServiceTest",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ffcd442d-356b-4dfb-a1d2-1b4e8cc4e420",
+								"exec": [
+									"var json = pm.response.json();",
+									"pm.environment.set(\"id\", json.id);",
+									"",
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"endDateTime\": \"2016-03-02T23:59:59:00Z\", \n    \"mode\": \"PROACTIVE\",\n    \"name\": \"simple test\",\n    \"startDateTime\": \"2016-03-02T00:00:00:00Z\",\n    \"state\": \"In Progress\",\n    \"relatedService\": {\n        \"href\": \"https://mycsp.com:8080/tmf-api/serviceManagement/v4/service/21\", \n        \"id\": \"21\"\n    },\n    \"testSpecification\":{\n        \"href\": \"https://mycsp.com:8080/tmf-api/serviceTestManagement/v4/serviceTestSpecification/22\",\n        \"id\": \"22\",\n        \"@referredType\": \"PerformanceTestSpecification\"\n    }\n}"
+						},
+						"url": {
+							"raw": "{{Service_Test}}/tmf-api/serviceTestManagement/v4/serviceTest",
+							"host": [
+								"{{Service_Test}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceTestManagement",
+								"v4",
+								"serviceTest"
+							]
+						},
+						"description": "This operation creates a ServiceTest entity."
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieves a ServiceTest by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a03e1148-c26b-4acc-ae49-16f3ced35eb7",
+								"exec": [
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Service_Test}}/tmf-api/serviceTestManagement/v4/serviceTest/{{id}}?",
+							"host": [
+								"{{Service_Test}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceTestManagement",
+								"v4",
+								"serviceTest",
+								"{{id}}"
+							],
+							"query": [
+								{
+									"key": "fields",
+									"value": "{{fields}}",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						},
+						"description": "This operation retrieves a ServiceTest entity. Attribute selection is enabled for all first level attributes."
+					},
+					"response": []
+				},
+				{
+					"name": "Updates partially a ServiceTest",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b595e2d8-0363-4bb4-ac3c-591e44774722",
+								"exec": [
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"state\": \"Completed\"\n}"
+						},
+						"url": {
+							"raw": "{{Service_Test}}/tmf-api/serviceTestManagement/v4/serviceTest/{{id}}",
+							"host": [
+								"{{Service_Test}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceTestManagement",
+								"v4",
+								"serviceTest",
+								"{{id}}"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						},
+						"description": "This operation updates partially a ServiceTest entity."
+					},
+					"response": []
+				},
+				{
+					"name": "Deletes a ServiceTest",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a488ef0d-7b9e-422f-84d7-e23666ece4d8",
+								"exec": [
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Service_Test}}/tmf-api/serviceTestManagement/v4/serviceTest/{{id}}",
+							"host": [
+								"{{Service_Test}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceTestManagement",
+								"v4",
+								"serviceTest",
+								"{{id}}"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						},
+						"description": "This operation deletes a ServiceTest entity."
+					},
+					"response": []
+				}
+			],
+			"description": "Folder for serviceTest"
+		},
+		{
+			"name": "serviceTestSpecification",
+			"item": [
+				{
+					"name": "List or find ServiceTestSpecification objects",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0c3cc032-423d-4a67-8a09-ff30fdb858b3",
+								"exec": [
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Service_Test}}/tmf-api/serviceTestManagement/v4/serviceTestSpecification?",
+							"host": [
+								"{{Service_Test}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceTestManagement",
+								"v4",
+								"serviceTestSpecification"
+							],
+							"query": [
+								{
+									"key": "fields",
+									"value": "{{fields}}",
+									"disabled": true
+								},
+								{
+									"key": "offset",
+									"value": "{{offset}}",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "{{limit}}",
+									"disabled": true
+								}
+							]
+						},
+						"description": "This operation list or find ServiceTestSpecification entities"
+					},
+					"response": []
+				},
+				{
+					"name": "Creates a ServiceTestSpecification",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "bfc0fc38-5977-4170-b140-296c129ff41d",
+								"exec": [
+									"var json = pm.response.json();",
+									"pm.environment.set(\"id\", json.id);",
+									"",
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"description\": \"a service description\",\n    \"name\": \"monkey test\",\n    \"validFor\": {\n        \"endDateTime\": \"2017-03-01T00:00:00Z\",\n        \"startDateTime\": \"2016-03-01T00:00:00Z\"\n    },\n    \"relatedServiceSpecification\": {\n        \"href\": \"https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v4/serviceSpecification/31\", \n        \"id\": \"31\", \n        \"@referredType\": \"vCPEServiceSpecification\"\n    }\n}"
+						},
+						"url": {
+							"raw": "{{Service_Test}}/tmf-api/serviceTestManagement/v4/serviceTestSpecification",
+							"host": [
+								"{{Service_Test}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceTestManagement",
+								"v4",
+								"serviceTestSpecification"
+							]
+						},
+						"description": "This operation creates a ServiceTestSpecification entity."
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieves a ServiceTestSpecification by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "865d10d0-f75f-4700-baea-1d41e59c7f63",
+								"exec": [
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Service_Test}}/tmf-api/serviceTestManagement/v4/serviceTestSpecification/{{id}}?",
+							"host": [
+								"{{Service_Test}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceTestManagement",
+								"v4",
+								"serviceTestSpecification",
+								"{{id}}"
+							],
+							"query": [
+								{
+									"key": "fields",
+									"value": "{{fields}}",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						},
+						"description": "This operation retrieves a ServiceTestSpecification entity. Attribute selection is enabled for all first level attributes."
+					},
+					"response": []
+				},
+				{
+					"name": "Updates partially a ServiceTestSpecification",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1a92e48f-0268-4733-8208-13d0c94c4472",
+								"exec": [
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"new name\"\n}"
+						},
+						"url": {
+							"raw": "{{Service_Test}}/tmf-api/serviceTestManagement/v4/serviceTestSpecification/{{id}}",
+							"host": [
+								"{{Service_Test}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceTestManagement",
+								"v4",
+								"serviceTestSpecification",
+								"{{id}}"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						},
+						"description": "This operation updates partially a ServiceTestSpecification entity."
+					},
+					"response": []
+				},
+				{
+					"name": "Deletes a ServiceTestSpecification",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2611daf7-cdcf-42ba-99cd-16cb4a71c709",
+								"exec": [
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Service_Test}}/tmf-api/serviceTestManagement/v4/serviceTestSpecification/{{id}}",
+							"host": [
+								"{{Service_Test}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceTestManagement",
+								"v4",
+								"serviceTestSpecification",
+								"{{id}}"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						},
+						"description": "This operation deletes a ServiceTestSpecification entity."
+					},
+					"response": []
+				}
+			],
+			"description": "Folder for serviceTestSpecification"
+		},
+		{
+			"name": "hub",
+			"item": [
+				{
+					"name": "Register a listener",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ec3d5fe5-64ad-4e53-b442-5f66a1ca3d85",
+								"exec": [
+									"var json = pm.response.json();",
+									"pm.environment.set(\"id\", json.id);",
+									"",
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"callback\": \"callback\",\n    \"query\": \"query\"\n}"
+						},
+						"url": {
+							"raw": "{{Service_Test}}/tmf-api/serviceTestManagement/v4/hub",
+							"host": [
+								"{{Service_Test}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceTestManagement",
+								"v4",
+								"hub"
+							]
+						},
+						"description": "Sets the communication endpoint address the service instance must use to deliver information about its health state, execution state, failures and metrics."
+					},
+					"response": []
+				},
+				{
+					"name": "Unregister a listener",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "aba3ee15-b493-449c-acaa-cb90b2ea8549",
+								"exec": [
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Service_Test}}/tmf-api/serviceTestManagement/v4/hub/{{id}}",
+							"host": [
+								"{{Service_Test}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceTestManagement",
+								"v4",
+								"hub",
+								"{{id}}"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						},
+						"description": "Resets the communication endpoint address the service instance must use to deliver information about its health state, execution state, failures and metrics."
+					},
+					"response": []
+				}
+			],
+			"description": "Folder for hub"
+		},
+		{
+			"name": "listener",
+			"item": [
+				{
+					"name": "Client listener for entity ServiceTestSpecificationCreateNotification",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2569aa5a-6ed8-418a-832e-594939f0caa4",
+								"exec": [
+									"var json = pm.response.json();",
+									"pm.environment.set(\"id\", json.id);",
+									"",
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"eventId\": \"00001\",\n  \"eventTime\": \"2000-01-23T04:56:07.000Z\",\n  \"eventType\": \"serviceTestSpecificationCreateNotification\",\n  \"event\": {\n    \"serviceTestSpecification\": {\n      \"description\": \"a service description\",\n      \"name\": \"monkey test\",\n      \"validFor\": {\n        \"endDateTime\": \"2017-03-01T00:00:00Z\",\n        \"startDateTime\": \"2016-03-01T00:00:00Z\"\n      },\n      \"relatedServiceSpecification\": {\n        \"href\": \"https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v4/serviceSpecification/31\",\n        \"id\": \"31\",\n        \"@referredType\": \"vCPEServiceSpecification\"\n      },\n      \"id\": \"8ffae661-150a-4932-85d3-c44ddb61c7b5\",\n      \"href\": \"https://api-service-test-management-v4-0-0.mybluemix.net/tmf-api/serviceTestManagement/v4/serviceTestSpecification/8ffae661-150a-4932-85d3-c44ddb61c7b5\",\n      \"@schemaLocation\": \"https://api-service-test-management-v4-0-0.mybluemix.net/docs/#/\",\n      \"@type\": \"ServiceTestSpecification\",\n      \"@baseType\": \"ServiceTestSpecification\"\n    }\n  }\n}"
+						},
+						"url": {
+							"raw": "{{Service_Test}}/tmf-api/serviceTestManagement/v4/listener/serviceTestSpecificationCreateNotification",
+							"host": [
+								"{{Service_Test}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceTestManagement",
+								"v4",
+								"listener",
+								"serviceTestSpecificationCreateNotification"
+							]
+						},
+						"description": "Example of a client listener for receiving the notification ServiceTestSpecificationCreateNotification"
+					},
+					"response": []
+				},
+				{
+					"name": "Client listener for entity ServiceTestSpecificationAttributeValueChangeNotification",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9a63ff11-2f73-4874-b906-cd49e66e0379",
+								"exec": [
+									"var json = pm.response.json();",
+									"pm.environment.set(\"id\", json.id);",
+									"",
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"eventId\": \"00001\",\n  \"eventTime\": \"2000-01-23T04:56:07.000Z\",\n  \"eventType\": \"serviceTestSpecificationAttributeValueChangeNotification\",\n  \"event\": {\n    \"serviceTestSpecification\": {\n      \"description\": \"a service description\",\n      \"name\": \"monkey test\",\n      \"validFor\": {\n        \"endDateTime\": \"2017-03-01T00:00:00Z\",\n        \"startDateTime\": \"2016-03-01T00:00:00Z\"\n      },\n      \"relatedServiceSpecification\": {\n        \"href\": \"https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v4/serviceSpecification/31\",\n        \"id\": \"31\",\n        \"@referredType\": \"vCPEServiceSpecification\"\n      },\n      \"id\": \"8ffae661-150a-4932-85d3-c44ddb61c7b5\",\n      \"href\": \"https://api-service-test-management-v4-0-0.mybluemix.net/tmf-api/serviceTestManagement/v4/serviceTestSpecification/8ffae661-150a-4932-85d3-c44ddb61c7b5\",\n      \"@schemaLocation\": \"https://api-service-test-management-v4-0-0.mybluemix.net/docs/#/\",\n      \"@type\": \"ServiceTestSpecification\",\n      \"@baseType\": \"ServiceTestSpecification\"\n    }\n  }\n}"
+						},
+						"url": {
+							"raw": "{{Service_Test}}/tmf-api/serviceTestManagement/v4/listener/serviceTestSpecificationAttributeValueChangeNotification",
+							"host": [
+								"{{Service_Test}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceTestManagement",
+								"v4",
+								"listener",
+								"serviceTestSpecificationAttributeValueChangeNotification"
+							]
+						},
+						"description": "Example of a client listener for receiving the notification ServiceTestSpecificationAttributeValueChangeNotification"
+					},
+					"response": []
+				},
+				{
+					"name": "Client listener for entity ServiceTestSpecificationDeleteNotification",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9dff591f-bef5-43ba-bfde-91ea4660fa3a",
+								"exec": [
+									"var json = pm.response.json();",
+									"pm.environment.set(\"id\", json.id);",
+									"",
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"eventId\": \"eventId\",\n  \"eventTime\": \"2000-01-23T04:56:07.000Z\",\n  \"eventType\": \"ServiceTestSpecificationDeleteNotification\",\n  \"event\": {\n    \"serviceTestSpecification\": {\n      \"description\": \"a service description\",\n      \"name\": \"monkey test\",\n      \"validFor\": {\n        \"endDateTime\": \"2017-03-01T00:00:00Z\",\n        \"startDateTime\": \"2016-03-01T00:00:00Z\"\n      },\n      \"relatedServiceSpecification\": {\n        \"href\": \"https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v4/serviceSpecification/31\",\n        \"id\": \"31\",\n        \"@referredType\": \"vCPEServiceSpecification\"\n      },\n      \"id\": \"8ffae661-150a-4932-85d3-c44ddb61c7b5\",\n      \"href\": \"https://api-service-test-management-v4-0-0.mybluemix.net/tmf-api/serviceTestManagement/v4/serviceTestSpecification/8ffae661-150a-4932-85d3-c44ddb61c7b5\",\n      \"@schemaLocation\": \"https://api-service-test-management-v4-0-0.mybluemix.net/docs/#/\",\n      \"@type\": \"ServiceTestSpecification\",\n      \"@baseType\": \"ServiceTestSpecification\"\n    }\n  }\n}"
+						},
+						"url": {
+							"raw": "{{Service_Test}}/tmf-api/serviceTestManagement/v4/listener/serviceTestSpecificationDeleteNotification",
+							"host": [
+								"{{Service_Test}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceTestManagement",
+								"v4",
+								"listener",
+								"serviceTestSpecificationDeleteNotification"
+							]
+						},
+						"description": "Example of a client listener for receiving the notification ServiceTestSpecificationDeleteNotification"
+					},
+					"response": []
+				},
+				{
+					"name": "Client listener for entity ServiceTestCreateNotification",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "94eb480f-e259-4a17-81d9-a61693b669ed",
+								"exec": [
+									"var json = pm.response.json();",
+									"pm.environment.set(\"id\", json.id);",
+									"",
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"eventId\": \"00001\",\n  \"eventTime\": \"2000-01-23T04:56:07.000Z\",\n  \"eventType\": \"ServiceTestCreateNotification\",\n  \"event\": {\n    \"serviceTest\": {\n      \"endDateTime\": \"2016-03-02T23:59:59:00Z\",\n      \"mode\": \"PROACTIVE\",\n      \"name\": \"simple test\",\n      \"startDateTime\": \"2016-03-02T00:00:00:00Z\",\n      \"state\": \"In Progress\",\n      \"relatedService\": {\n        \"href\": \"https://mycsp.com:8080/tmf-api/serviceManagement/v4/service/21\",\n        \"id\": \"21\"\n      },\n      \"testSpecification\": {\n        \"href\": \"https://mycsp.com:8080/tmf-api/serviceTestManagement/v4/serviceTestSpecification/22\",\n        \"id\": \"22\",\n        \"@referredType\": \"PerformanceTestSpecification\"\n      },\n      \"id\": \"a95d5041-6a8d-4a96-bc86-af2d71cad159\",\n      \"href\": \"https://api-service-test-management-v4-0-0.mybluemix.net/tmf-api/serviceTestManagement/v4/serviceTest/a95d5041-6a8d-4a96-bc86-af2d71cad159\",\n      \"@schemaLocation\": \"https://api-service-test-management-v4-0-0.mybluemix.net/docs/#/\",\n      \"@type\": \"ServiceTest\",\n      \"@baseType\": \"ServiceTest\"\n    }\n  }\n}"
+						},
+						"url": {
+							"raw": "{{Service_Test}}/tmf-api/serviceTestManagement/v4/listener/serviceTestCreateNotification",
+							"host": [
+								"{{Service_Test}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceTestManagement",
+								"v4",
+								"listener",
+								"serviceTestCreateNotification"
+							]
+						},
+						"description": "Example of a client listener for receiving the notification ServiceTestCreateNotification"
+					},
+					"response": []
+				},
+				{
+					"name": "Client listener for entity ServiceTestAttributeValueChangeNotification",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "fd7164a2-d673-4265-9295-584fd1909a9f",
+								"exec": [
+									"var json = pm.response.json();",
+									"pm.environment.set(\"id\", json.id);",
+									"",
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"eventId\": \"00001\",\n  \"eventTime\": \"2000-01-23T04:56:07.000Z\",\n  \"eventType\": \"ServiceTestAttributeValueChangeNotification\",\n  \"event\": {\n    \"serviceTest\": {\n      \"endDateTime\": \"2016-03-02T23:59:59:00Z\",\n      \"mode\": \"PROACTIVE\",\n      \"name\": \"simple test\",\n      \"startDateTime\": \"2016-03-02T00:00:00:00Z\",\n      \"state\": \"In Progress\",\n      \"relatedService\": {\n        \"href\": \"https://mycsp.com:8080/tmf-api/serviceManagement/v4/service/21\",\n        \"id\": \"21\"\n      },\n      \"testSpecification\": {\n        \"href\": \"https://mycsp.com:8080/tmf-api/serviceTestManagement/v4/serviceTestSpecification/22\",\n        \"id\": \"22\",\n        \"@referredType\": \"PerformanceTestSpecification\"\n      },\n      \"id\": \"a95d5041-6a8d-4a96-bc86-af2d71cad159\",\n      \"href\": \"https://api-service-test-management-v4-0-0.mybluemix.net/tmf-api/serviceTestManagement/v4/serviceTest/a95d5041-6a8d-4a96-bc86-af2d71cad159\",\n      \"@schemaLocation\": \"https://api-service-test-management-v4-0-0.mybluemix.net/docs/#/\",\n      \"@type\": \"ServiceTest\",\n      \"@baseType\": \"ServiceTest\"\n    }\n  }\n}"
+						},
+						"url": {
+							"raw": "{{Service_Test}}/tmf-api/serviceTestManagement/v4/listener/serviceTestAttributeValueChangeNotification",
+							"host": [
+								"{{Service_Test}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceTestManagement",
+								"v4",
+								"listener",
+								"serviceTestAttributeValueChangeNotification"
+							]
+						},
+						"description": "Example of a client listener for receiving the notification ServiceTestAttributeValueChangeNotification"
+					},
+					"response": []
+				},
+				{
+					"name": "Client listener for entity ServiceTestDeleteNotification",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3959ca6f-279a-4603-ac73-1e9e8e367e1f",
+								"exec": [
+									"var json = pm.response.json();",
+									"pm.environment.set(\"id\", json.id);",
+									"",
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"eventId\": \"00001\",\n  \"eventTime\": \"2000-01-23T04:56:07.000Z\",\n  \"eventType\": \"ServiceTestDeleteNotification\",\n  \"event\": {\n    \"serviceTest\": {\n      \"endDateTime\": \"2016-03-02T23:59:59:00Z\",\n      \"mode\": \"PROACTIVE\",\n      \"name\": \"simple test\",\n      \"startDateTime\": \"2016-03-02T00:00:00:00Z\",\n      \"state\": \"In Progress\",\n      \"relatedService\": {\n        \"href\": \"https://mycsp.com:8080/tmf-api/serviceManagement/v4/service/21\",\n        \"id\": \"21\"\n      },\n      \"testSpecification\": {\n        \"href\": \"https://mycsp.com:8080/tmf-api/serviceTestManagement/v4/serviceTestSpecification/22\",\n        \"id\": \"22\",\n        \"@referredType\": \"PerformanceTestSpecification\"\n      },\n      \"id\": \"a95d5041-6a8d-4a96-bc86-af2d71cad159\",\n      \"href\": \"https://api-service-test-management-v4-0-0.mybluemix.net/tmf-api/serviceTestManagement/v4/serviceTest/a95d5041-6a8d-4a96-bc86-af2d71cad159\",\n      \"@schemaLocation\": \"https://api-service-test-management-v4-0-0.mybluemix.net/docs/#/\",\n      \"@type\": \"ServiceTest\",\n      \"@baseType\": \"ServiceTest\"\n    }\n  }\n}"
+						},
+						"url": {
+							"raw": "{{Service_Test}}/tmf-api/serviceTestManagement/v4/listener/serviceTestDeleteNotification",
+							"host": [
+								"{{Service_Test}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceTestManagement",
+								"v4",
+								"listener",
+								"serviceTestDeleteNotification"
+							]
+						},
+						"description": "Example of a client listener for receiving the notification ServiceTestDeleteNotification"
+					},
+					"response": []
+				}
+			],
+			"description": "Folder for listener"
+		}
+	]
+}

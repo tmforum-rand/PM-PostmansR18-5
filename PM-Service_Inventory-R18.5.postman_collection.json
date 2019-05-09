@@ -1,0 +1,682 @@
+{
+	"info": {
+		"_postman_id": "3676c62c-3339-4070-aad7-db8b03d7a882",
+		"name": "PM-Service_Inventory-R18.5",
+		"description": "## TMF API Reference : TMF 638 - Service Inventory Management v4 Release 18.5 - Dec 2018\n\nThe intent of this API is to provide a consistent/standardized mechanism to query and manipulate the Service inventory.\n\nThe Service Inventory API can be used to query the service instances for a customer via Self Service Portal or the Call Centre operator can query the service instances on behalf of the customer while a customer may have a complaint or a query.\nNote: Only the CustomerFacingServices instances will be presented to the customer.\n\nThe Service Inventory API can be called by the Service Order Management to create a new service instance/ update an existing service instance in the Service Inventory.\n\n### Service resource\nService is an abstract base class for defining the Service hierarchy. All Services are characterized as either being possibly visible and usable by a Customer or not. This gives rise to the two subclasses of  Service: CustomerFacingService and ResourceFacingService.\n\n### Service Inventory API performs the following operations on service  :\n- Retrieve  a service or a collection of services depending on filter criteria\n- Partial update of a service (including updating rules)\n- Create a service (including default values and creation rules and for administration users only)\n- Delete a service (for administration users only)\n- Notification of events on service\n\nCopyright (c)TM Forum 2018. All Rights Reserved.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "service",
+			"item": [
+				{
+					"name": "List or find Service objects",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b0ac2dfd-1266-4dd2-a318-deca455b4861",
+								"exec": [
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Service_Inventory}}/tmf-api/serviceInventory/v4/service",
+							"host": [
+								"{{Service_Inventory}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceInventory",
+								"v4",
+								"service"
+							],
+							"query": [
+								{
+									"key": "fields",
+									"value": "{{fields}}",
+									"disabled": true
+								},
+								{
+									"key": "offset",
+									"value": "{{offset}}",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "{{limit}}",
+									"disabled": true
+								}
+							]
+						},
+						"description": "This operation list or find Service entities"
+					},
+					"response": []
+				},
+				{
+					"name": "Creates a Service",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "24cea4b4-3dc0-447e-93e2-51381bbbcb83",
+								"exec": [
+									"var json = pm.response.json();",
+									"pm.environment.set(\"id\", json.id);",
+									"",
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"serviceType\": \"Cloud\",\n    \"name\": \"vCPE serial 1355615\",\n    \"description\": \"Instantiation of vCPE\",\n    \"state\": \"reserved\",\n    \"category\": \"CFS\",\n    \"isServiceEnabled\": false,\n    \"hasStarted\": false,\n    \"startMode\": \"1\",\n    \"isStateful\": true,\n    \"serviceSpecification\": {\n        \"id\": \"1212\",\n        \"href\": \"https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v4/serviceSpecification/1212\",\n        \"name\": \"vCPE\",\n        \"version\": \"1.0.0\",\n        \"@referredType\":\"vCPE\"\n    },\n    \"serviceCharacteristic\": [\n        {\n            \"name\": \"vCPE_IP\",\n            \"valueType\": \"object\",\n            \"value\":\n            {\n                \"@type\": \"IPAddress\",\n                \"@schemaLocation\": \"https://mycsp.com:8080/tmf-api/schema/Service/IPAddress.schema.json\",\n                \"address\": \"193.218.236.21\"\n            }\n        }\n    ],\n    \"serviceRelationship\": [\n        {\n            \"relationshipType\":\"DependentOn\",\n            \"service\":\n            {\n                \"href\": \"https://mycsp.com:8080/tmf-api/serviceInventoryManagement/v4/service/5645\",\n                \"id\": \"5645\",\n                \"@referredType\" : \"vOS\"\n            }\n        }\n    ],\n    \"relatedParty\": [\n        {\n            \"href\": \"mycsp.com:8080/tmf-api/partyManagement/v4/party/456\",\n            \"id\": \"456\",\n            \"name\" : \"John Doe\",\n            \"role\": \"user\"\n        }\n    ],\n    \"serviceOrder\": [\n        {\n            \"href\": \"https://mycsp.com:8080/tmf-api/serviceOrderManagement/v4/serviceOrder/42\",\n            \"id\": \"42\",\n            \"serviceOrderItemId\": \"1\"\n        }\n    ],\n    \"place\": [\n        {\n            \"href\": \"https://mycsp.com:8080/tmf-api/addressManagement/v4/place/2435\",\n            \"id\": \"2435\",\n            \"name\": \"Customer primary location\",\n            \"role\": \"InstallationAddress\"\n        }\n    ],\n    \"@type\": \"vCPE\",\n    \"@schemaLocation\": \"https://mycsp.com:8080/tmf-api/schema/Service/vCPE.schema.json\",\n    \"@baseType\": \"Service\"\n}"
+						},
+						"url": {
+							"raw": "{{Service_Inventory}}/tmf-api/serviceInventory/v4/service",
+							"host": [
+								"{{Service_Inventory}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceInventory",
+								"v4",
+								"service"
+							]
+						},
+						"description": "This operation creates a Service entity."
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieves a Service by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "44a65eb0-30d4-4420-a9bd-f81c6d263a64",
+								"exec": [
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Service_Inventory}}/tmf-api/serviceInventory/v4/service/{{id}}?",
+							"host": [
+								"{{Service_Inventory}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceInventory",
+								"v4",
+								"service",
+								"{{id}}"
+							],
+							"query": [
+								{
+									"key": "fields",
+									"value": "{{fields}}",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						},
+						"description": "This operation retrieves a Service entity. Attribute selection is enabled for all first level attributes."
+					},
+					"response": []
+				},
+				{
+					"name": "Updates partially a Service",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "72e03c9c-452c-424c-96f7-554d92a08314",
+								"exec": [
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n          \"supportingService\": [\n            {\n              \"href\": \"https://mycsp.com:8080/tmf-api/serviceInventoryManagement/v4/service/5885\",\n              \"id\": \"5885\",\n              \"@referredType\": \"vJavaVM\"\n            }\n          ],\n          \"supportingResource\": [\n            {\n              \"id\": \"6161\",\n              \"href\": \"https://mycsp.com:8080/tmf-api/resourceInventoryManagement/v4/resource/https://mycsp.com:8080/tmf-api/serviceInventoryManagement/v4/service/5351\",\n              \"name\": \"GenInfra\",\n              \"@referredType\": \"Infra\"\n            },\n            {\n              \"id\": \"7171\",\n              \"href\": \"https://mycsp.com:8080/tmf-api/resourceInventoryManagement/v4/resource/https://mycsp.com:8080/tmf-api/serviceInventoryManagement/v4/service/7171\",\n              \"name\": \"BNG_MUX\",\n              \"@referredType\": \"MUX\"\n            }\n          ]\n        }"
+						},
+						"url": {
+							"raw": "{{Service_Inventory}}/tmf-api/serviceInventory/v4/service/{{id}}",
+							"host": [
+								"{{Service_Inventory}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceInventory",
+								"v4",
+								"service",
+								"{{id}}"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						},
+						"description": "This operation updates partially a Service entity."
+					},
+					"response": []
+				},
+				{
+					"name": "Deletes a Service",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ad2d5aa5-6e8a-43ad-ab54-26a46d485319",
+								"exec": [
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Service_Inventory}}/tmf-api/serviceInventory/v4/service/{{id}}",
+							"host": [
+								"{{Service_Inventory}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceInventory",
+								"v4",
+								"service",
+								"{{id}}"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						},
+						"description": "This operation deletes a Service entity."
+					},
+					"response": []
+				}
+			],
+			"description": "Folder for service"
+		},
+		{
+			"name": "hub",
+			"item": [
+				{
+					"name": "Register a listener",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3cce9d40-124a-454f-bd9d-b87cf4b8885e",
+								"exec": [
+									"var json = pm.response.json();",
+									"pm.environment.set(\"id\", json.id);",
+									"",
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"callback\": \"callback\",\n    \"query\": \"query\"\n}"
+						},
+						"url": {
+							"raw": "{{Service_Inventory}}/tmf-api/serviceInventory/v4/hub",
+							"host": [
+								"{{Service_Inventory}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceInventory",
+								"v4",
+								"hub"
+							]
+						},
+						"description": "Sets the communication endpoint address the service instance must use to deliver information about its health state, execution state, failures and metrics."
+					},
+					"response": []
+				},
+				{
+					"name": "Unregister a listener",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5b1573e9-b2eb-4bda-8915-0369a88f4e5d",
+								"exec": [
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Service_Inventory}}/tmf-api/serviceInventory/v4/hub/{{id}}",
+							"host": [
+								"{{Service_Inventory}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceInventory",
+								"v4",
+								"hub",
+								"{{id}}"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						},
+						"description": "Resets the communication endpoint address the service instance must use to deliver information about its health state, execution state, failures and metrics."
+					},
+					"response": []
+				}
+			],
+			"description": "Folder for hub"
+		},
+		{
+			"name": "listener",
+			"item": [
+				{
+					"name": "Client listener for entity ServiceCreateNotification",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "aa0e4c9f-49b8-462f-9a99-e06c730dab02",
+								"exec": [
+									"var json = pm.response.json();",
+									"pm.environment.set(\"id\", json.id);",
+									"",
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"eventId\": \"00001\",\n  \"eventTime\": \"2000-01-23T04:56:07.000Z\",\n  \"eventType\": \"serviceCreateNotification\",\n  \"event\": {\n    \"service\": {\n      \"serviceType\": \"Cloud\",\n      \"name\": \"vCPE serial 1355615\",\n      \"description\": \"Instantiation of vCPE\",\n      \"state\": \"reserved\",\n      \"category\": \"CFS\",\n      \"isServiceEnabled\": false,\n      \"hasStarted\": false,\n      \"startMode\": \"1\",\n      \"isStateful\": true,\n      \"serviceSpecification\": {\n        \"id\": \"1212\",\n        \"href\": \"https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v4/serviceSpecification/1212\",\n        \"name\": \"vCPE\",\n        \"version\": \"1.0.0\",\n        \"@referredType\": \"vCPE\"\n      },\n      \"serviceCharacteristic\": [\n        {\n          \"name\": \"vCPE_IP\",\n          \"valueType\": \"object\",\n          \"value\": {\n            \"@type\": \"IPAddress\",\n            \"@schemaLocation\": \"https://mycsp.com:8080/tmf-api/schema/Service/IPAddress.schema.json\",\n            \"address\": \"193.218.236.21\"\n          }\n        }\n      ],\n      \"serviceRelationship\": [\n        {\n          \"relationshipType\": \"DependentOn\",\n          \"service\": {\n            \"href\": \"https://mycsp.com:8080/tmf-api/serviceInventoryManagement/v4/service/5645\",\n            \"id\": \"5645\",\n            \"@referredType\": \"vOS\"\n          }\n        }\n      ],\n      \"relatedParty\": [\n        {\n          \"href\": \"mycsp.com:8080/tmf-api/partyManagement/v4/party/456\",\n          \"id\": \"456\",\n          \"name\": \"John Doe\",\n          \"role\": \"user\"\n        }\n      ],\n      \"serviceOrder\": [\n        {\n          \"href\": \"https://mycsp.com:8080/tmf-api/serviceOrderManagement/v4/serviceOrder/42\",\n          \"id\": \"42\",\n          \"serviceOrderItemId\": \"1\"\n        }\n      ],\n      \"place\": [\n        {\n          \"href\": \"https://mycsp.com:8080/tmf-api/addressManagement/v4/place/2435\",\n          \"id\": \"2435\",\n          \"name\": \"Customer primary location\",\n          \"role\": \"InstallationAddress\"\n        }\n      ],\n      \"@type\": \"vCPE\",\n      \"@schemaLocation\": \"https://mycsp.com:8080/tmf-api/schema/Service/vCPE.schema.json\",\n      \"@baseType\": \"Service\",\n      \"id\": \"676c3386-48ef-450a-a5e6-dd46be99a956\",\n      \"href\": \"https://api-service-inventory-management-v4-0-0.mybluemix.net/tmf-api/serviceInventory/v4/service/676c3386-48ef-450a-a5e6-dd46be99a956\"\n    }\n  }\n}"
+						},
+						"url": {
+							"raw": "{{Service_Inventory}}/tmf-api/serviceInventory/v4/listener/serviceCreateNotification",
+							"host": [
+								"{{Service_Inventory}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceInventory",
+								"v4",
+								"listener",
+								"serviceCreateNotification"
+							]
+						},
+						"description": "Example of a client listener for receiving the notification ServiceCreateNotification"
+					},
+					"response": []
+				},
+				{
+					"name": "Client listener for entity ServiceAttributeValueChangeNotification",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "68caeb8a-560b-4988-a7c3-20d2b48cac69",
+								"exec": [
+									"var json = pm.response.json();",
+									"pm.environment.set(\"id\", json.id);",
+									"",
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"eventId\": \"00001\",\n  \"eventTime\": \"2000-01-23T04:56:07.000Z\",\n  \"eventType\": \"serviceAttributeValueChangeNotification\",\n  \"event\": {\n    \"service\": {\n      \"serviceType\": \"Cloud\",\n      \"name\": \"vCPE serial 1355615\",\n      \"description\": \"Instantiation of vCPE\",\n      \"state\": \"reserved\",\n      \"category\": \"CFS\",\n      \"isServiceEnabled\": false,\n      \"hasStarted\": false,\n      \"startMode\": \"1\",\n      \"isStateful\": true,\n      \"serviceSpecification\": {\n        \"id\": \"1212\",\n        \"href\": \"https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v4/serviceSpecification/1212\",\n        \"name\": \"vCPE\",\n        \"version\": \"1.0.0\",\n        \"@referredType\": \"vCPE\"\n      },\n      \"serviceCharacteristic\": [\n        {\n          \"name\": \"vCPE_IP\",\n          \"valueType\": \"object\",\n          \"value\": {\n            \"@type\": \"IPAddress\",\n            \"@schemaLocation\": \"https://mycsp.com:8080/tmf-api/schema/Service/IPAddress.schema.json\",\n            \"address\": \"193.218.236.21\"\n          }\n        }\n      ],\n      \"serviceRelationship\": [\n        {\n          \"relationshipType\": \"DependentOn\",\n          \"service\": {\n            \"href\": \"https://mycsp.com:8080/tmf-api/serviceInventoryManagement/v4/service/5645\",\n            \"id\": \"5645\",\n            \"@referredType\": \"vOS\"\n          }\n        }\n      ],\n      \"relatedParty\": [\n        {\n          \"href\": \"mycsp.com:8080/tmf-api/partyManagement/v4/party/456\",\n          \"id\": \"456\",\n          \"name\": \"John Doe\",\n          \"role\": \"user\"\n        }\n      ],\n      \"serviceOrder\": [\n        {\n          \"href\": \"https://mycsp.com:8080/tmf-api/serviceOrderManagement/v4/serviceOrder/42\",\n          \"id\": \"42\",\n          \"serviceOrderItemId\": \"1\"\n        }\n      ],\n      \"place\": [\n        {\n          \"href\": \"https://mycsp.com:8080/tmf-api/addressManagement/v4/place/2435\",\n          \"id\": \"2435\",\n          \"name\": \"Customer primary location\",\n          \"role\": \"InstallationAddress\"\n        }\n      ],\n      \"@type\": \"vCPE\",\n      \"@schemaLocation\": \"https://mycsp.com:8080/tmf-api/schema/Service/vCPE.schema.json\",\n      \"@baseType\": \"Service\",\n      \"id\": \"676c3386-48ef-450a-a5e6-dd46be99a956\",\n      \"href\": \"https://api-service-inventory-management-v4-0-0.mybluemix.net/tmf-api/serviceInventory/v4/service/676c3386-48ef-450a-a5e6-dd46be99a956\"\n    }\n  }\n}"
+						},
+						"url": {
+							"raw": "{{Service_Inventory}}/tmf-api/serviceInventory/v4/listener/serviceAttributeValueChangeNotification",
+							"host": [
+								"{{Service_Inventory}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceInventory",
+								"v4",
+								"listener",
+								"serviceAttributeValueChangeNotification"
+							]
+						},
+						"description": "Example of a client listener for receiving the notification ServiceAttributeValueChangeNotification"
+					},
+					"response": []
+				},
+				{
+					"name": "Client listener for entity ServiceStateChangeNotification",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f545dccc-6302-4b59-a01f-4da3413a4395",
+								"exec": [
+									"var json = pm.response.json();",
+									"pm.environment.set(\"id\", json.id);",
+									"",
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"eventId\": \"00001\",\n  \"eventTime\": \"2000-01-23T04:56:07.000Z\",\n  \"eventType\": \"serviceStateChangeNotification\",\n  \"event\": {\n    \"service\": {\n      \"serviceType\": \"Cloud\",\n      \"name\": \"vCPE serial 1355615\",\n      \"description\": \"Instantiation of vCPE\",\n      \"state\": \"reserved\",\n      \"category\": \"CFS\",\n      \"isServiceEnabled\": false,\n      \"hasStarted\": false,\n      \"startMode\": \"1\",\n      \"isStateful\": true,\n      \"serviceSpecification\": {\n        \"id\": \"1212\",\n        \"href\": \"https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v4/serviceSpecification/1212\",\n        \"name\": \"vCPE\",\n        \"version\": \"1.0.0\",\n        \"@referredType\": \"vCPE\"\n      },\n      \"serviceCharacteristic\": [\n        {\n          \"name\": \"vCPE_IP\",\n          \"valueType\": \"object\",\n          \"value\": {\n            \"@type\": \"IPAddress\",\n            \"@schemaLocation\": \"https://mycsp.com:8080/tmf-api/schema/Service/IPAddress.schema.json\",\n            \"address\": \"193.218.236.21\"\n          }\n        }\n      ],\n      \"serviceRelationship\": [\n        {\n          \"relationshipType\": \"DependentOn\",\n          \"service\": {\n            \"href\": \"https://mycsp.com:8080/tmf-api/serviceInventoryManagement/v4/service/5645\",\n            \"id\": \"5645\",\n            \"@referredType\": \"vOS\"\n          }\n        }\n      ],\n      \"relatedParty\": [\n        {\n          \"href\": \"mycsp.com:8080/tmf-api/partyManagement/v4/party/456\",\n          \"id\": \"456\",\n          \"name\": \"John Doe\",\n          \"role\": \"user\"\n        }\n      ],\n      \"serviceOrder\": [\n        {\n          \"href\": \"https://mycsp.com:8080/tmf-api/serviceOrderManagement/v4/serviceOrder/42\",\n          \"id\": \"42\",\n          \"serviceOrderItemId\": \"1\"\n        }\n      ],\n      \"place\": [\n        {\n          \"href\": \"https://mycsp.com:8080/tmf-api/addressManagement/v4/place/2435\",\n          \"id\": \"2435\",\n          \"name\": \"Customer primary location\",\n          \"role\": \"InstallationAddress\"\n        }\n      ],\n      \"@type\": \"vCPE\",\n      \"@schemaLocation\": \"https://mycsp.com:8080/tmf-api/schema/Service/vCPE.schema.json\",\n      \"@baseType\": \"Service\",\n      \"id\": \"676c3386-48ef-450a-a5e6-dd46be99a956\",\n      \"href\": \"https://api-service-inventory-management-v4-0-0.mybluemix.net/tmf-api/serviceInventory/v4/service/676c3386-48ef-450a-a5e6-dd46be99a956\"\n    }\n  }\n}"
+						},
+						"url": {
+							"raw": "{{Service_Inventory}}/tmf-api/serviceInventory/v4/listener/serviceStateChangeNotification",
+							"host": [
+								"{{Service_Inventory}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceInventory",
+								"v4",
+								"listener",
+								"serviceStateChangeNotification"
+							]
+						},
+						"description": "Example of a client listener for receiving the notification ServiceStateChangeNotification"
+					},
+					"response": []
+				},
+				{
+					"name": "Client listener for entity ServiceBatchNotification",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "59097271-e5c9-4dee-9217-5c2d803d11fb",
+								"exec": [
+									"var json = pm.response.json();",
+									"pm.environment.set(\"id\", json.id);",
+									"",
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"eventId\": \"00001\",\n  \"eventTime\": \"2000-01-23T04:56:07.000Z\",\n  \"eventType\": \"serviceBatchNotification\",\n  \"event\": {\n    \"service\": {\n      \"serviceType\": \"Cloud\",\n      \"name\": \"vCPE serial 1355615\",\n      \"description\": \"Instantiation of vCPE\",\n      \"state\": \"reserved\",\n      \"category\": \"CFS\",\n      \"isServiceEnabled\": false,\n      \"hasStarted\": false,\n      \"startMode\": \"1\",\n      \"isStateful\": true,\n      \"serviceSpecification\": {\n        \"id\": \"1212\",\n        \"href\": \"https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v4/serviceSpecification/1212\",\n        \"name\": \"vCPE\",\n        \"version\": \"1.0.0\",\n        \"@referredType\": \"vCPE\"\n      },\n      \"serviceCharacteristic\": [\n        {\n          \"name\": \"vCPE_IP\",\n          \"valueType\": \"object\",\n          \"value\": {\n            \"@type\": \"IPAddress\",\n            \"@schemaLocation\": \"https://mycsp.com:8080/tmf-api/schema/Service/IPAddress.schema.json\",\n            \"address\": \"193.218.236.21\"\n          }\n        }\n      ],\n      \"serviceRelationship\": [\n        {\n          \"relationshipType\": \"DependentOn\",\n          \"service\": {\n            \"href\": \"https://mycsp.com:8080/tmf-api/serviceInventoryManagement/v4/service/5645\",\n            \"id\": \"5645\",\n            \"@referredType\": \"vOS\"\n          }\n        }\n      ],\n      \"relatedParty\": [\n        {\n          \"href\": \"mycsp.com:8080/tmf-api/partyManagement/v4/party/456\",\n          \"id\": \"456\",\n          \"name\": \"John Doe\",\n          \"role\": \"user\"\n        }\n      ],\n      \"serviceOrder\": [\n        {\n          \"href\": \"https://mycsp.com:8080/tmf-api/serviceOrderManagement/v4/serviceOrder/42\",\n          \"id\": \"42\",\n          \"serviceOrderItemId\": \"1\"\n        }\n      ],\n      \"place\": [\n        {\n          \"href\": \"https://mycsp.com:8080/tmf-api/addressManagement/v4/place/2435\",\n          \"id\": \"2435\",\n          \"name\": \"Customer primary location\",\n          \"role\": \"InstallationAddress\"\n        }\n      ],\n      \"@type\": \"vCPE\",\n      \"@schemaLocation\": \"https://mycsp.com:8080/tmf-api/schema/Service/vCPE.schema.json\",\n      \"@baseType\": \"Service\",\n      \"id\": \"676c3386-48ef-450a-a5e6-dd46be99a956\",\n      \"href\": \"https://api-service-inventory-management-v4-0-0.mybluemix.net/tmf-api/serviceInventory/v4/service/676c3386-48ef-450a-a5e6-dd46be99a956\"\n    }\n  }\n}"
+						},
+						"url": {
+							"raw": "{{Service_Inventory}}/tmf-api/serviceInventory/v4/listener/serviceBatchNotification",
+							"host": [
+								"{{Service_Inventory}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceInventory",
+								"v4",
+								"listener",
+								"serviceBatchNotification"
+							]
+						},
+						"description": "Example of a client listener for receiving the notification ServiceBatchNotification"
+					},
+					"response": []
+				},
+				{
+					"name": "Client listener for entity ServiceDeleteNotification",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "85dc4472-fe92-4a61-893c-35c93d79a575",
+								"exec": [
+									"var json = pm.response.json();",
+									"pm.environment.set(\"id\", json.id);",
+									"",
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"eventId\": \"00001\",\n  \"eventTime\": \"2000-01-23T04:56:07.000Z\",\n  \"eventType\": \"serviceDeleteNotification\",\n  \"event\": {\n    \"service\": {\n      \"serviceType\": \"Cloud\",\n      \"name\": \"vCPE serial 1355615\",\n      \"description\": \"Instantiation of vCPE\",\n      \"state\": \"reserved\",\n      \"category\": \"CFS\",\n      \"isServiceEnabled\": false,\n      \"hasStarted\": false,\n      \"startMode\": \"1\",\n      \"isStateful\": true,\n      \"serviceSpecification\": {\n        \"id\": \"1212\",\n        \"href\": \"https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v4/serviceSpecification/1212\",\n        \"name\": \"vCPE\",\n        \"version\": \"1.0.0\",\n        \"@referredType\": \"vCPE\"\n      },\n      \"serviceCharacteristic\": [\n        {\n          \"name\": \"vCPE_IP\",\n          \"valueType\": \"object\",\n          \"value\": {\n            \"@type\": \"IPAddress\",\n            \"@schemaLocation\": \"https://mycsp.com:8080/tmf-api/schema/Service/IPAddress.schema.json\",\n            \"address\": \"193.218.236.21\"\n          }\n        }\n      ],\n      \"serviceRelationship\": [\n        {\n          \"relationshipType\": \"DependentOn\",\n          \"service\": {\n            \"href\": \"https://mycsp.com:8080/tmf-api/serviceInventoryManagement/v4/service/5645\",\n            \"id\": \"5645\",\n            \"@referredType\": \"vOS\"\n          }\n        }\n      ],\n      \"relatedParty\": [\n        {\n          \"href\": \"mycsp.com:8080/tmf-api/partyManagement/v4/party/456\",\n          \"id\": \"456\",\n          \"name\": \"John Doe\",\n          \"role\": \"user\"\n        }\n      ],\n      \"serviceOrder\": [\n        {\n          \"href\": \"https://mycsp.com:8080/tmf-api/serviceOrderManagement/v4/serviceOrder/42\",\n          \"id\": \"42\",\n          \"serviceOrderItemId\": \"1\"\n        }\n      ],\n      \"place\": [\n        {\n          \"href\": \"https://mycsp.com:8080/tmf-api/addressManagement/v4/place/2435\",\n          \"id\": \"2435\",\n          \"name\": \"Customer primary location\",\n          \"role\": \"InstallationAddress\"\n        }\n      ],\n      \"@type\": \"vCPE\",\n      \"@schemaLocation\": \"https://mycsp.com:8080/tmf-api/schema/Service/vCPE.schema.json\",\n      \"@baseType\": \"Service\",\n      \"id\": \"676c3386-48ef-450a-a5e6-dd46be99a956\",\n      \"href\": \"https://api-service-inventory-management-v4-0-0.mybluemix.net/tmf-api/serviceInventory/v4/service/676c3386-48ef-450a-a5e6-dd46be99a956\"\n    }\n  }\n}"
+						},
+						"url": {
+							"raw": "{{Service_Inventory}}/tmf-api/serviceInventory/v4/listener/serviceDeleteNotification",
+							"host": [
+								"{{Service_Inventory}}"
+							],
+							"path": [
+								"tmf-api",
+								"serviceInventory",
+								"v4",
+								"listener",
+								"serviceDeleteNotification"
+							]
+						},
+						"description": "Example of a client listener for receiving the notification ServiceDeleteNotification"
+					},
+					"response": []
+				}
+			],
+			"description": "Folder for listener"
+		}
+	]
+}

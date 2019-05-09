@@ -1,0 +1,981 @@
+{
+	"info": {
+		"_postman_id": "3f3bcba3-de34-4fcc-b776-4772de4b70fe",
+		"name": "PM-Service_Activation-R18.5",
+		"description": "## TMF API Reference: TMF640 - Service Activation and Configuration\n\n### Release : 18.5 - December 2018\n\nService Activation and Configuration API goal is to provide the ability to activate and configure Services.\n\n### Operations\nService Activation and Configuration API performs the following operations on the resources :\n- Retrieve an entity or a collection of entities depending on filter criteria\n- Partial update of an entity (including updating rules)\n- Create an entity (including default values and creation rules)\n- Delete an entity (for administration purposes)\n- Manage notification of events",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "service",
+			"item": [
+				{
+					"name": "List or find Service objects",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "811c8f1f-e671-45ee-9879-64b803cc2abf",
+								"exec": [
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Service_Activation}}/tmf-api/ServiceActivationAndConfiguration/v4/service",
+							"host": [
+								"{{Service_Activation}}"
+							],
+							"path": [
+								"tmf-api",
+								"ServiceActivationAndConfiguration",
+								"v4",
+								"service"
+							],
+							"query": [
+								{
+									"key": "fields",
+									"value": "{{fields}}",
+									"disabled": true
+								},
+								{
+									"key": "offset",
+									"value": "{{offset}}",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "{{limit}}",
+									"disabled": true
+								}
+							]
+						},
+						"description": "This operation list or find Service entities"
+					},
+					"response": []
+				},
+				{
+					"name": "Creates a Service",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8c851252-c248-4ae9-91c5-1352289a4cac",
+								"exec": [
+									"var json = pm.response.json();",
+									"pm.environment.set(\"id\", json.id);",
+									"",
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"serviceType\": \"Cloud\",\n    \"serviceDate\": \"2018-01-15T12:26:11.747Z\",\n    \"startDate\": \"2018-01-15T12:26:11.747Z\",\n    \"state\": \"active\", \n    \"serviceCharacteristic\": [\n        {\n            \"name\": \"vCPE_IP\",\n            \"valueType\": \"object\",\n            \"value\":\n            {\n                \"@type\": \"IPAddress\",\n                \"@schemaLocation\": \"https://mycsp.com:8080/tmf-api/schema/Service/IPAddress.schema.json\",\n                \"address\": \"193.218.236.21\"\n            }\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{Service_Activation}}/tmf-api/ServiceActivationAndConfiguration/v4/service",
+							"host": [
+								"{{Service_Activation}}"
+							],
+							"path": [
+								"tmf-api",
+								"ServiceActivationAndConfiguration",
+								"v4",
+								"service"
+							]
+						},
+						"description": "This operation creates a Service entity."
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieves a Service by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1120e35c-f3bc-4939-b976-b23696f6d1e5",
+								"exec": [
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Service_Activation}}/tmf-api/ServiceActivationAndConfiguration/v4/service/{{id}}?",
+							"host": [
+								"{{Service_Activation}}"
+							],
+							"path": [
+								"tmf-api",
+								"ServiceActivationAndConfiguration",
+								"v4",
+								"service",
+								"{{id}}"
+							],
+							"query": [
+								{
+									"key": "fields",
+									"value": "{{fields}}",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						},
+						"description": "This operation retrieves a Service entity. Attribute selection is enabled for all first level attributes."
+					},
+					"response": []
+				},
+				{
+					"name": "Updates partially a Service",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0c1c276e-7d7b-4573-9ae8-75ab475dab09",
+								"exec": [
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"state\": \"active\"\n}"
+						},
+						"url": {
+							"raw": "{{Service_Activation}}/tmf-api/ServiceActivationAndConfiguration/v4/service/{{id}}",
+							"host": [
+								"{{Service_Activation}}"
+							],
+							"path": [
+								"tmf-api",
+								"ServiceActivationAndConfiguration",
+								"v4",
+								"service",
+								"{{id}}"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						},
+						"description": "This operation updates partially a Service entity."
+					},
+					"response": []
+				},
+				{
+					"name": "Deletes a Service",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "07a242b2-1139-4f2c-a8fd-79e28339335b",
+								"exec": [
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Service_Activation}}/tmf-api/ServiceActivationAndConfiguration/v4/service/{{id}}",
+							"host": [
+								"{{Service_Activation}}"
+							],
+							"path": [
+								"tmf-api",
+								"ServiceActivationAndConfiguration",
+								"v4",
+								"service",
+								"{{id}}"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						},
+						"description": "This operation deletes a Service entity."
+					},
+					"response": []
+				}
+			],
+			"description": "Folder for service"
+		},
+		{
+			"name": "monitor",
+			"item": [
+				{
+					"name": "List or find Monitor objects",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "61b58e96-6df7-432b-ad16-acd99be865a2",
+								"exec": [
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});",
+									"",
+									"var json = pm.response.json();",
+									"",
+									"if (Array.isArray(json) && json.length > 0){",
+									"    ",
+									"    pm.environment.set(\"id\", json[0].id);",
+									"}",
+									"else {",
+									"    if (json.id !== undefined){",
+									"        pm.environment.set(\"id\", json.id);",
+									"    }",
+									"    else {",
+									"        pm.environment.set(\"id\", \"\");",
+									"    }",
+									"    ",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Service_Activation}}/tmf-api/ServiceActivationAndConfiguration/v4/monitor",
+							"host": [
+								"{{Service_Activation}}"
+							],
+							"path": [
+								"tmf-api",
+								"ServiceActivationAndConfiguration",
+								"v4",
+								"monitor"
+							],
+							"query": [
+								{
+									"key": "fields",
+									"value": "{{fields}}",
+									"disabled": true
+								},
+								{
+									"key": "offset",
+									"value": "{{offset}}",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "{{limit}}",
+									"disabled": true
+								}
+							]
+						},
+						"description": "This operation list or find Monitor entities"
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieves a Monitor by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "fa8b998f-31fb-4327-99e3-3631d3eb5eb9",
+								"exec": [
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Service_Activation}}/tmf-api/ServiceActivationAndConfiguration/v4/monitor/{{id}}",
+							"host": [
+								"{{Service_Activation}}"
+							],
+							"path": [
+								"tmf-api",
+								"ServiceActivationAndConfiguration",
+								"v4",
+								"monitor",
+								"{{id}}"
+							],
+							"query": [
+								{
+									"key": "fields",
+									"value": "{{fields}}",
+									"disabled": true
+								}
+							]
+						},
+						"description": "This operation retrieves a ImportJob entity. Attribute selection is enabled for all first level attributes."
+					},
+					"response": []
+				}
+			],
+			"description": "Folder for monitor"
+		},
+		{
+			"name": "hub",
+			"item": [
+				{
+					"name": "Register a listener",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "20d0d6eb-a8c4-4f0e-9591-f87d2567b194",
+								"exec": [
+									"var json = pm.response.json();",
+									"pm.environment.set(\"id\", json.id);",
+									"",
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"callback\": \"callback\",\n    \"query\": \"query\"\n}"
+						},
+						"url": {
+							"raw": "{{Service_Activation}}/tmf-api/ServiceActivationAndConfiguration/v4/hub",
+							"host": [
+								"{{Service_Activation}}"
+							],
+							"path": [
+								"tmf-api",
+								"ServiceActivationAndConfiguration",
+								"v4",
+								"hub"
+							]
+						},
+						"description": "Sets the communication endpoint address the service instance must use to deliver information about its health state, execution state, failures and metrics."
+					},
+					"response": []
+				},
+				{
+					"name": "Unregister a listener",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f3fa2cb5-033b-4b87-918b-ab1522340e70",
+								"exec": [
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Service_Activation}}/tmf-api/ServiceActivationAndConfiguration/v4/hub/{{id}}",
+							"host": [
+								"{{Service_Activation}}"
+							],
+							"path": [
+								"tmf-api",
+								"ServiceActivationAndConfiguration",
+								"v4",
+								"hub",
+								"{{id}}"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						},
+						"description": "Resets the communication endpoint address the service instance must use to deliver information about its health state, execution state, failures and metrics."
+					},
+					"response": []
+				}
+			],
+			"description": "Folder for hub"
+		},
+		{
+			"name": "listener",
+			"item": [
+				{
+					"name": "Client listener for entity MonitorCreateNotification",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "165fb92a-4292-40ee-b9c0-486d0312d97c",
+								"exec": [
+									"var json = pm.response.json();",
+									"pm.environment.set(\"id\", json.id);",
+									"",
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"eventId\": \"00001\",\n  \"eventTime\": \"2000-01-23T04:56:07.000Z\",\n  \"eventType\": \"MonitorCreateNotification\",\n  \"event\": {\n    \"monitor\": {\n      \"id\": \"44555\",\n      \"href\": \"https://mycsp.com:8080/tmf-api/ServiceActivationAndConfiguration/v4/monitor/44555\",\n      \"state\": \"In Progress\",\n      \"request\": {\n        \"method\": \"http\",\n        \"to\": \"https://mycsp.com:5050/netAPIs/activate\",\n        \"body\": \"ACTIVATE BBAND 144445\",\n        \"header\": [\n          {\n            \"name\": \"locale\",\n            \"value\": \"en-us\"\n          }\n        ]\n      },\n      \"response\": {\n        \"statusCode\": \"344\",\n        \"body\": \"ACTIVATE BBAND 144445 REQUEST RECEIVED PENDING\",\n        \"header\": [\n          {\n            \"name\": \"locale\",\n            \"value\": \"en-us\"\n          }\n        ]\n      },\n      \"sourceHref\": \"https://mycsp.com:8080/tmf-api/ServiceActivationAndConfiguration/v4/service/5351\",\n      \"@type\": \"Monitor\"\n    }\n  }\n}"
+						},
+						"url": {
+							"raw": "{{Service_Activation}}/tmf-api/ServiceActivationAndConfiguration/v4/listener/monitorCreateNotification",
+							"host": [
+								"{{Service_Activation}}"
+							],
+							"path": [
+								"tmf-api",
+								"ServiceActivationAndConfiguration",
+								"v4",
+								"listener",
+								"monitorCreateNotification"
+							]
+						},
+						"description": "Example of a client listener for receiving the notification MonitorCreateNotification"
+					},
+					"response": []
+				},
+				{
+					"name": "Client listener for entity MonitorAttributeValueChangeNotification",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "53114667-6472-4dfd-a361-09434a634b18",
+								"exec": [
+									"var json = pm.response.json();",
+									"pm.environment.set(\"id\", json.id);",
+									"",
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"eventId\": \"00001\",\n  \"eventTime\": \"2000-01-23T04:56:07.000Z\",\n  \"eventType\": \"MonitorAttributeValueChangeNotification\",\n  \"event\": {\n    \"monitor\": {\n      \"id\": \"44555\",\n      \"href\": \"https://mycsp.com:8080/tmf-api/ServiceActivationAndConfiguration/v4/monitor/44555\",\n      \"state\": \"In Progress\",\n      \"request\": {\n        \"method\": \"http\",\n        \"to\": \"https://mycsp.com:5050/netAPIs/activate\",\n        \"body\": \"ACTIVATE BBAND 144445\",\n        \"header\": [\n          {\n            \"name\": \"locale\",\n            \"value\": \"en-us\"\n          }\n        ]\n      },\n      \"response\": {\n        \"statusCode\": \"344\",\n        \"body\": \"ACTIVATE BBAND 144445 REQUEST RECEIVED PENDING\",\n        \"header\": [\n          {\n            \"name\": \"locale\",\n            \"value\": \"en-us\"\n          }\n        ]\n      },\n      \"sourceHref\": \"https://mycsp.com:8080/tmf-api/ServiceActivationAndConfiguration/v4/service/5351\",\n      \"@type\": \"Monitor\"\n    }\n  }\n}"
+						},
+						"url": {
+							"raw": "{{Service_Activation}}/tmf-api/ServiceActivationAndConfiguration/v4/listener/monitorAttributeValueChangeNotification",
+							"host": [
+								"{{Service_Activation}}"
+							],
+							"path": [
+								"tmf-api",
+								"ServiceActivationAndConfiguration",
+								"v4",
+								"listener",
+								"monitorAttributeValueChangeNotification"
+							]
+						},
+						"description": "Example of a client listener for receiving the notification MonitorAttributeValueChangeNotification"
+					},
+					"response": []
+				},
+				{
+					"name": "Client listener for entity MonitorStateChangeNotification",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d6b5958b-ea5d-4ff4-979d-04e257e4c5be",
+								"exec": [
+									"var json = pm.response.json();",
+									"pm.environment.set(\"id\", json.id);",
+									"",
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"eventId\": \"00001\",\n  \"eventTime\": \"2000-01-23T04:56:07.000Z\",\n  \"eventType\": \"MonitorStateChangeNotification\",\n  \"event\": {\n    \"monitor\": {\n      \"id\": \"44555\",\n      \"href\": \"https://mycsp.com:8080/tmf-api/ServiceActivationAndConfiguration/v4/monitor/44555\",\n      \"state\": \"In Progress\",\n      \"request\": {\n        \"method\": \"http\",\n        \"to\": \"https://mycsp.com:5050/netAPIs/activate\",\n        \"body\": \"ACTIVATE BBAND 144445\",\n        \"header\": [\n          {\n            \"name\": \"locale\",\n            \"value\": \"en-us\"\n          }\n        ]\n      },\n      \"response\": {\n        \"statusCode\": \"344\",\n        \"body\": \"ACTIVATE BBAND 144445 REQUEST RECEIVED PENDING\",\n        \"header\": [\n          {\n            \"name\": \"locale\",\n            \"value\": \"en-us\"\n          }\n        ]\n      },\n      \"sourceHref\": \"https://mycsp.com:8080/tmf-api/ServiceActivationAndConfiguration/v4/service/5351\",\n      \"@type\": \"Monitor\"\n    }\n  }\n}"
+						},
+						"url": {
+							"raw": "{{Service_Activation}}/tmf-api/ServiceActivationAndConfiguration/v4/listener/monitorStateChangeNotification",
+							"host": [
+								"{{Service_Activation}}"
+							],
+							"path": [
+								"tmf-api",
+								"ServiceActivationAndConfiguration",
+								"v4",
+								"listener",
+								"monitorStateChangeNotification"
+							]
+						},
+						"description": "Example of a client listener for receiving the notification MonitorStateChangeNotification"
+					},
+					"response": []
+				},
+				{
+					"name": "Client listener for entity MonitorDeleteNotification",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9c79e521-54ba-4658-a08a-f9579dce6667",
+								"exec": [
+									"var json = pm.response.json();",
+									"pm.environment.set(\"id\", json.id);",
+									"",
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"eventId\": \"00001\",\n  \"eventTime\": \"2000-01-23T04:56:07.000Z\",\n  \"eventType\": \"MonitorDeleteNotification\",\n  \"event\": {\n    \"monitor\": {\n      \"id\": \"44555\",\n      \"href\": \"https://mycsp.com:8080/tmf-api/ServiceActivationAndConfiguration/v4/monitor/44555\",\n      \"state\": \"In Progress\",\n      \"request\": {\n        \"method\": \"http\",\n        \"to\": \"https://mycsp.com:5050/netAPIs/activate\",\n        \"body\": \"ACTIVATE BBAND 144445\",\n        \"header\": [\n          {\n            \"name\": \"locale\",\n            \"value\": \"en-us\"\n          }\n        ]\n      },\n      \"response\": {\n        \"statusCode\": \"344\",\n        \"body\": \"ACTIVATE BBAND 144445 REQUEST RECEIVED PENDING\",\n        \"header\": [\n          {\n            \"name\": \"locale\",\n            \"value\": \"en-us\"\n          }\n        ]\n      },\n      \"sourceHref\": \"https://mycsp.com:8080/tmf-api/ServiceActivationAndConfiguration/v4/service/5351\",\n      \"@type\": \"Monitor\"\n    }\n  }\n}"
+						},
+						"url": {
+							"raw": "{{Service_Activation}}/tmf-api/ServiceActivationAndConfiguration/v4/listener/monitorDeleteNotification",
+							"host": [
+								"{{Service_Activation}}"
+							],
+							"path": [
+								"tmf-api",
+								"ServiceActivationAndConfiguration",
+								"v4",
+								"listener",
+								"monitorDeleteNotification"
+							]
+						},
+						"description": "Example of a client listener for receiving the notification MonitorDeleteNotification"
+					},
+					"response": []
+				},
+				{
+					"name": "Client listener for entity ServiceCreateNotification",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8595c568-e21d-42dd-82fa-9b2ec6be12c5",
+								"exec": [
+									"var json = pm.response.json();",
+									"pm.environment.set(\"id\", json.id);",
+									"",
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"eventId\": \"00001\",\n  \"eventTime\": \"2019-03-11t19:08:33.275z\",\n  \"eventType\": \"ServiceCreateNotification\",\n  \"event\": {\n    \"service\": {\n      \"serviceType\": \"Cloud\",\n      \"serviceDate\": \"2018-01-15T12:26:11.747Z\",\n      \"startDate\": \"2018-01-15T12:26:11.747Z\",\n      \"serviceCharacteristic\": [\n        {\n          \"name\": \"vCPE_IP\",\n          \"valueType\": \"object\",\n          \"value\": {\n            \"@type\": \"IPAddress\",\n            \"@schemaLocation\": \"https://mycsp.com:8080/tmf-api/schema/Service/IPAddress.schema.json\",\n            \"address\": \"193.218.236.21\"\n          }\n        }\n      ],\n      \"id\": \"9af9f030-8147-4e84-979c-3275dfc4a784\",\n      \"href\": \"https://api-service-activation-and-configuration-v4-0-0.mybluemix.net/tmf-api/ServiceActivationAndConfiguration/v4/service/9af9f030-8147-4e84-979c-3275dfc4a784\",\n      \"@schemaLocation\": \"https://api-service-activation-and-configuration-v4-0-0.mybluemix.net/docs/#/\",\n      \"@type\": \"Service\",\n      \"@baseType\": \"Service\"\n    }\n  }\n}"
+						},
+						"url": {
+							"raw": "{{Service_Activation}}/tmf-api/ServiceActivationAndConfiguration/v4/listener/serviceCreateNotification",
+							"host": [
+								"{{Service_Activation}}"
+							],
+							"path": [
+								"tmf-api",
+								"ServiceActivationAndConfiguration",
+								"v4",
+								"listener",
+								"serviceCreateNotification"
+							]
+						},
+						"description": "Example of a client listener for receiving the notification ServiceCreateNotification"
+					},
+					"response": []
+				},
+				{
+					"name": "Client listener for entity ServiceAttributeValueChangeNotification",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9f429a08-2b65-408b-990c-fcdc4af4e1ae",
+								"exec": [
+									"var json = pm.response.json();",
+									"pm.environment.set(\"id\", json.id);",
+									"",
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"eventId\": \"00001\",\n  \"eventTime\": \"2019-03-11t19:08:33.275z\",\n  \"eventType\": \"serviceAttributeValueChangeNotification\",\n  \"event\": {\n    \"service\": {\n      \"serviceType\": \"Cloud\",\n      \"serviceDate\": \"2018-01-15T12:26:11.747Z\",\n      \"startDate\": \"2018-01-15T12:26:11.747Z\",\n      \"serviceCharacteristic\": [\n        {\n          \"name\": \"vCPE_IP\",\n          \"valueType\": \"object\",\n          \"value\": {\n            \"@type\": \"IPAddress\",\n            \"@schemaLocation\": \"https://mycsp.com:8080/tmf-api/schema/Service/IPAddress.schema.json\",\n            \"address\": \"193.218.236.21\"\n          }\n        }\n      ],\n      \"id\": \"9af9f030-8147-4e84-979c-3275dfc4a784\",\n      \"href\": \"https://api-service-activation-and-configuration-v4-0-0.mybluemix.net/tmf-api/ServiceActivationAndConfiguration/v4/service/9af9f030-8147-4e84-979c-3275dfc4a784\",\n      \"@schemaLocation\": \"https://api-service-activation-and-configuration-v4-0-0.mybluemix.net/docs/#/\",\n      \"@type\": \"Service\",\n      \"@baseType\": \"Service\"\n    }\n  }\n}"
+						},
+						"url": {
+							"raw": "{{Service_Activation}}/tmf-api/ServiceActivationAndConfiguration/v4/listener/serviceAttributeValueChangeNotification",
+							"host": [
+								"{{Service_Activation}}"
+							],
+							"path": [
+								"tmf-api",
+								"ServiceActivationAndConfiguration",
+								"v4",
+								"listener",
+								"serviceAttributeValueChangeNotification"
+							]
+						},
+						"description": "Example of a client listener for receiving the notification ServiceAttributeValueChangeNotification"
+					},
+					"response": []
+				},
+				{
+					"name": "Client listener for entity ServiceStateChangeNotification",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f6043140-82a4-4af5-a839-8d8620284e4e",
+								"exec": [
+									"var json = pm.response.json();",
+									"pm.environment.set(\"id\", json.id);",
+									"",
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"eventId\": \"00001\",\n  \"eventTime\": \"2019-03-11t19:08:33.275z\",\n  \"eventType\": \"serviceStateChangeNotification\",\n  \"event\": {\n    \"service\": {\n      \"serviceType\": \"Cloud\",\n      \"serviceDate\": \"2018-01-15T12:26:11.747Z\",\n      \"startDate\": \"2018-01-15T12:26:11.747Z\",\n      \"serviceCharacteristic\": [\n        {\n          \"name\": \"vCPE_IP\",\n          \"valueType\": \"object\",\n          \"value\": {\n            \"@type\": \"IPAddress\",\n            \"@schemaLocation\": \"https://mycsp.com:8080/tmf-api/schema/Service/IPAddress.schema.json\",\n            \"address\": \"193.218.236.21\"\n          }\n        }\n      ],\n      \"id\": \"9af9f030-8147-4e84-979c-3275dfc4a784\",\n      \"href\": \"https://api-service-activation-and-configuration-v4-0-0.mybluemix.net/tmf-api/ServiceActivationAndConfiguration/v4/service/9af9f030-8147-4e84-979c-3275dfc4a784\",\n      \"@schemaLocation\": \"https://api-service-activation-and-configuration-v4-0-0.mybluemix.net/docs/#/\",\n      \"@type\": \"Service\",\n      \"@baseType\": \"Service\"\n    }\n  }\n}"
+						},
+						"url": {
+							"raw": "{{Service_Activation}}/tmf-api/ServiceActivationAndConfiguration/v4/listener/serviceStateChangeNotification",
+							"host": [
+								"{{Service_Activation}}"
+							],
+							"path": [
+								"tmf-api",
+								"ServiceActivationAndConfiguration",
+								"v4",
+								"listener",
+								"serviceStateChangeNotification"
+							]
+						},
+						"description": "Example of a client listener for receiving the notification ServiceStateChangeNotification"
+					},
+					"response": []
+				},
+				{
+					"name": "Client listener for entity ServiceDeleteNotification",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c48c9e3f-99ea-4258-8385-b2e3533429c1",
+								"exec": [
+									"var json = pm.response.json();",
+									"pm.environment.set(\"id\", json.id);",
+									"",
+									"pm.test(\"Response should not be error\", function(){",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"eventId\": \"00001\",\n  \"eventTime\": \"2019-03-11t19:08:33.275z\",\n  \"eventType\": \"serviceDeleteNotification\",\n  \"event\": {\n    \"service\": {\n      \"serviceType\": \"Cloud\",\n      \"serviceDate\": \"2018-01-15T12:26:11.747Z\",\n      \"startDate\": \"2018-01-15T12:26:11.747Z\",\n      \"serviceCharacteristic\": [\n        {\n          \"name\": \"vCPE_IP\",\n          \"valueType\": \"object\",\n          \"value\": {\n            \"@type\": \"IPAddress\",\n            \"@schemaLocation\": \"https://mycsp.com:8080/tmf-api/schema/Service/IPAddress.schema.json\",\n            \"address\": \"193.218.236.21\"\n          }\n        }\n      ],\n      \"id\": \"9af9f030-8147-4e84-979c-3275dfc4a784\",\n      \"href\": \"https://api-service-activation-and-configuration-v4-0-0.mybluemix.net/tmf-api/ServiceActivationAndConfiguration/v4/service/9af9f030-8147-4e84-979c-3275dfc4a784\",\n      \"@schemaLocation\": \"https://api-service-activation-and-configuration-v4-0-0.mybluemix.net/docs/#/\",\n      \"@type\": \"Service\",\n      \"@baseType\": \"Service\"\n    }\n  }\n}"
+						},
+						"url": {
+							"raw": "{{Service_Activation}}/tmf-api/ServiceActivationAndConfiguration/v4/listener/serviceDeleteNotification",
+							"host": [
+								"{{Service_Activation}}"
+							],
+							"path": [
+								"tmf-api",
+								"ServiceActivationAndConfiguration",
+								"v4",
+								"listener",
+								"serviceDeleteNotification"
+							]
+						},
+						"description": "Example of a client listener for receiving the notification ServiceDeleteNotification"
+					},
+					"response": []
+				}
+			],
+			"description": "Folder for listener"
+		}
+	]
+}
